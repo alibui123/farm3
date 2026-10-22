@@ -1,7 +1,8 @@
 "use client";
 
-import { motion, useInView, useReducedMotion } from "framer-motion";
-import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
+import { Fragment, useRef } from "react";
+import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
 
 type Props = {
   text: string;
@@ -22,13 +23,19 @@ export function SplitHeading({
 }: Props) {
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, margin: "-10% 0px" });
-  const reduced = useReducedMotion();
+  const reduced = usePrefersReducedMotion();
   const words = text.split(" ");
 
   if (reduced) {
+    // Keep each word unbreakable (e.g. "Al-Shukar"), matching the animated version.
     return (
       <Tag ref={ref as never} className={className}>
-        {text}
+        {words.map((word, i) => (
+          <Fragment key={`${word}-${i}`}>
+            <span className="whitespace-nowrap">{word}</span>
+            {i < words.length - 1 ? " " : ""}
+          </Fragment>
+        ))}
       </Tag>
     );
   }
@@ -38,15 +45,17 @@ export function SplitHeading({
       <span className="sr-only">{text}</span>
       <span aria-hidden className="[text-wrap:balance]">
         {words.map((word, i) => (
+          // Extra bottom padding keeps descenders (g, y, p) inside the mask; the
+          // matching negative margin keeps line spacing unchanged.
           <span
             key={`${word}-${i}`}
-            className="inline-block overflow-hidden align-bottom"
+            className="-mb-[0.2em] inline-block overflow-hidden pb-[0.2em] align-bottom"
           >
             <motion.span
               className="inline-block"
-              initial={{ y: "110%", opacity: 0 }}
+              initial={{ y: "130%", opacity: 0 }}
               animate={
-                inView ? { y: "0%", opacity: 1 } : { y: "110%", opacity: 0 }
+                inView ? { y: "0%", opacity: 1 } : { y: "130%", opacity: 0 }
               }
               transition={{
                 duration: 0.7,

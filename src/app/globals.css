@@ -14,6 +14,11 @@
   --glass: rgba(255, 255, 255, 0.55);
   --glass-border: rgba(255, 255, 255, 0.45);
   --glass-dark: rgba(43, 33, 24, 0.35);
+  /* Pouch journey illustration tints, derived from the palette above */
+  --steel: color-mix(in srgb, var(--soil-muted) 16%, var(--milk));
+  --steel-edge: color-mix(in srgb, var(--soil-muted) 34%, var(--milk));
+  --chill: color-mix(in srgb, var(--sage) 45%, #d6ebf2);
+  --frost: color-mix(in srgb, var(--sage) 45%, transparent);
 
   --background: var(--cream);
   --foreground: var(--soil);
@@ -35,17 +40,16 @@
   --font-sans: var(--font-dm-sans);
 }
 
+/* Lenis handles smooth scrolling; native smooth scroll would fight it. */
 html {
   scroll-behavior: auto;
 }
 
-html.lenis,
-html.lenis body {
-  height: auto;
-}
-
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
+/* Anchor targets clear the fixed navbar; sections with their own scroll-mt-* override this. */
+@layer base {
+  [id] {
+    scroll-margin-top: 6rem;
+  }
 }
 
 body {
@@ -67,23 +71,24 @@ body {
   position: fixed;
   inset: 0;
   z-index: 9998;
-  opacity: 0.045;
-  mix-blend-mode: multiply;
+  /* No mix-blend-mode: blending a fixed full-screen layer repaints the page on every scroll. */
+  opacity: 0.035;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
+/*
+ * "Glass" surfaces use solid translucent fills, not backdrop-filter: blur is
+ * recalculated every frame for whatever moves behind it (video, scrolling).
+ */
 .glass {
-  background: var(--glass);
-  border: 1px solid var(--glass-border);
-  backdrop-filter: blur(18px) saturate(1.2);
-  -webkit-backdrop-filter: blur(18px) saturate(1.2);
+  background: rgba(255, 255, 255, 0.78);
+  /* Pasture hairline so white cards keep an edge on white sections. */
+  border: 1px solid rgba(47, 93, 58, 0.1);
 }
 
 .glass-dark {
-  background: var(--glass-dark);
+  background: rgba(43, 33, 24, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.18);
-  backdrop-filter: blur(18px) saturate(1.15);
-  -webkit-backdrop-filter: blur(18px) saturate(1.15);
 }
 
 .focus-ring:focus-visible {
@@ -102,14 +107,6 @@ body {
   }
 }
 
-/* Custom cursor hide on desktop when active */
-@media (pointer: fine) {
-  body.has-custom-cursor,
-  body.has-custom-cursor a,
-  body.has-custom-cursor button {
-    cursor: none;
-  }
-}
 
 @keyframes marquee {
   from {
@@ -129,3 +126,39 @@ body {
     animation: none;
   }
 }
+
+/*
+ * Ambient loops. CSS keyframes on transform/opacity run on the compositor,
+ * unlike JS-driven infinite animations; the reduced-motion rule above stops them.
+ */
+@keyframes float-y {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -6px, 0); }
+}
+@keyframes nudge-y {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, 6px, 0); }
+}
+@keyframes droplet {
+  0%, 100% { transform: translate3d(0, 0, 0); opacity: 0.25; }
+  50% { transform: translate3d(0, -18px, 0); opacity: 0.55; }
+}
+@keyframes ping-ring {
+  0% { transform: scale(1); opacity: 0.55; }
+  70%, 100% { transform: scale(1.35); opacity: 0; }
+}
+@keyframes swing {
+  0%, 100% { transform: rotate(-5deg); }
+  50% { transform: rotate(5deg); }
+}
+@keyframes drift-x {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
+}
+
+.animate-float { animation: float-y 4s ease-in-out infinite; }
+.animate-nudge { animation: nudge-y 1.6s ease-in-out infinite; }
+.animate-droplet { animation: droplet 4s ease-in-out infinite; }
+.animate-ping-ring { animation: ping-ring 2.4s ease-out infinite; }
+.animate-swing { animation: swing 4.2s ease-in-out infinite; transform-origin: top center; }
+.animate-drift { animation: drift-x 3.2s linear infinite; }

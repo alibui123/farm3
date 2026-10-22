@@ -1,17 +1,16 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { PRODUCTS } from "@/lib/constants";
+import {
+  PRICES_UPDATED,
+  PRODUCTS,
+  PRODUCTS_INTRO,
+  WHATSAPP,
+} from "@/lib/constants";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { SplitHeading } from "@/components/ui/SplitHeading";
 import { MilkWaveDivider, OrganicBlob } from "@/components/ui/MilkWave";
 import { MilkBottle } from "@/components/ui/MilkBottle";
-
-const LABELS: Record<(typeof PRODUCTS)[number]["icon"], string> = {
-  cow: "Cow",
-  buffalo: "Buffalo",
-  bulk: "Bulk",
-};
 
 export function Products() {
   return (
@@ -28,37 +27,77 @@ export function Products() {
 
       <div className="relative mx-auto max-w-6xl px-5 py-20 md:px-8 md:py-28">
         <SplitHeading
-          text="Milk the way it should taste."
-          className="max-w-2xl font-display text-3xl font-semibold text-balance text-soil md:text-5xl"
+          text={PRODUCTS_INTRO.heading}
+          className="max-w-3xl font-display text-3xl font-semibold text-balance text-soil md:text-5xl"
         />
-        <p className="mt-4 max-w-xl text-soil-muted">
-          Household bottles and distributor volumes — same farm, same chill
-          chain, same honesty.
-        </p>
+        <p className="mt-4 max-w-xl text-soil-muted">{PRODUCTS_INTRO.answer}</p>
 
         <div className="mt-12 grid gap-6 md:grid-cols-3">
           {PRODUCTS.map((product, i) => (
-            <GlassCard key={product.id} tilt className="flex flex-col p-6 md:p-7">
+            <GlassCard key={product.id} className="flex flex-col p-6 md:p-7">
               <div className="mb-5 flex items-start justify-between">
-                <MilkBottle delay={i * 0.15} label={LABELS[product.icon]} />
+                <MilkBottle delay={i * 0.15} label={product.label} />
                 <span className="rounded-full bg-pasture/10 px-3 py-1 text-xs font-medium text-pasture">
-                  {LABELS[product.icon]}
+                  {product.label}
                 </span>
               </div>
               <h3 className="font-display text-2xl text-soil">{product.name}</h3>
-              <p className="mt-2 flex-1 text-sm leading-relaxed text-soil-muted">
+              <p className="mt-0.5 text-sm text-soil-muted italic">
+                {product.localName}
+              </p>
+              <p className="mt-3 flex-1 text-sm leading-relaxed text-soil-muted">
                 {product.description}
               </p>
+              <div className="mt-5 border-t border-pasture/10 pt-4">
+                {product.price ? (
+                  <p className="font-display text-2xl text-soil">
+                    Rs {product.price}
+                    <span className="ml-1 font-sans text-sm text-soil-muted">
+                      per litre
+                    </span>
+                  </p>
+                ) : (
+                  <a
+                    href={WHATSAPP.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="focus-ring text-sm font-medium text-pasture underline-offset-4 hover:underline"
+                  >
+                    Ask for today&apos;s rate on WhatsApp
+                  </a>
+                )}
+              </div>
               <motion.a
                 href="#sample"
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.98 }}
-                className="focus-ring mt-6 inline-flex items-center justify-center rounded-full bg-pasture px-5 py-3 text-sm font-medium text-milk"
+                className="focus-ring mt-5 inline-flex items-center justify-center rounded-full bg-pasture px-5 py-3 text-sm font-medium text-milk"
               >
-                Request Sample
+                Try 1 litre free
               </motion.a>
             </GlassCard>
           ))}
+        </div>
+
+        <div className="mt-8 flex flex-col gap-2 text-sm text-soil-muted sm:flex-row sm:items-center sm:justify-between">
+          <p>
+            Prices last updated: {PRICES_UPDATED}.{" "}
+            <a
+              href="/products-prices"
+              className="focus-ring font-medium text-pasture underline underline-offset-4"
+            >
+              See full prices
+            </a>
+          </p>
+          <p>
+            Need milk in bulk for a shop, restaurant or distributor?{" "}
+            <a
+              href="/bulk-milk-supply"
+              className="focus-ring font-medium text-pasture underline underline-offset-4"
+            >
+              See bulk milk supply
+            </a>
+          </p>
         </div>
       </div>
     </section>

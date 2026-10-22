@@ -29,13 +29,9 @@ export function Testimonials() {
     <section className="overflow-hidden bg-milk py-20 md:py-28" aria-label="Testimonials">
       <div className="mx-auto max-w-6xl px-5 md:px-8">
         <SplitHeading
-          text="Morning glasses, honest reviews."
+          text="What our customers say"
           className="max-w-2xl font-display text-3xl font-semibold text-balance text-soil md:text-5xl"
         />
-        <p className="mt-3 text-sm text-soil-muted">
-          Placeholder quotes — replace with real customer voices in{" "}
-          <code className="rounded bg-cream px-1">constants.ts</code>.
-        </p>
       </div>
 
       <motion.div

@@ -1,37 +1,45 @@
 "use client";
 
 import { useEffect } from "react";
-import Lenis from "lenis";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { usePathname } from "next/navigation";
+import { ReactLenis, useLenis } from "lenis/react";
+import "lenis/dist/lenis.css";
 
-gsap.registerPlugin(ScrollTrigger);
-
+/**
+ * Smooths mouse-wheel and anchor-link scrolling site-wide.
+ * Touch stays native (syncTouch off): phones keep their own momentum
+ * scrolling, which is smoother and lag-free compared with JS-driven touch.
+ * Lenis turns itself off for prefers-reduced-motion users.
+ */
 export function SmoothScroll({ children }: { children: React.ReactNode }) {
+  return (
+    <ReactLenis
+      root
+      options={{
+        lerp: 0.1,
+        smoothWheel: true,
+        syncTouch: false,
+        // In-page links glide to their section and respect each section's scroll-margin.
+        anchors: true,
+        stopInertiaOnNavigate: true,
+      }}
+    >
+      <RouteReset />
+      {children}
+    </ReactLenis>
+  );
+}
+
+/** Drops any leftover glide when the route changes, so a new page never keeps scrolling. */
+function RouteReset() {
+  const lenis = useLenis();
+  const pathname = usePathname();
+
   useEffect(() => {
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduced) return;
+    if (!lenis) return;
+    lenis.stop();
+    lenis.start();
+  }, [lenis, pathname]);
 
-    const lenis = new Lenis({
-      duration: 1.15,
-      smoothWheel: true,
-      touchMultiplier: 1.4,
-    });
-
-    lenis.on("scroll", ScrollTrigger.update);
-
-    const ticker = (time: number) => {
-      lenis.raf(time * 1000);
-    };
-    gsap.ticker.add(ticker);
-    gsap.ticker.lagSmoothing(0);
-
-    return () => {
-      gsap.ticker.remove(ticker);
-      lenis.destroy();
-      ScrollTrigger.getAll().forEach((t) => t.kill());
-    };
-  }, []);
-
-  return <>{children}</>;
+  return null;
 }

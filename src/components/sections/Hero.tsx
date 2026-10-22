@@ -1,9 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ChevronDown } from "lucide-react";
 import { HERO, HERO_MEDIA, WHATSAPP } from "@/lib/constants";
-import { MagneticLink } from "@/components/ui/MagneticButton";
 
 export function Hero() {
   const words = HERO.headline.split(" ");
@@ -39,10 +37,10 @@ export function Hero() {
           <span className="sr-only">{HERO.headline}</span>
           <span aria-hidden className="flex flex-wrap gap-x-[0.28em]">
             {words.map((word, i) => (
-              <span key={`${word}-${i}`} className="inline-block overflow-hidden pb-1">
+              <span key={`${word}-${i}`} className="-mb-[0.2em] inline-block overflow-hidden pb-[0.2em]">
                 <motion.span
                   className="inline-block"
-                  initial={{ y: "115%", opacity: 0 }}
+                  initial={{ y: "130%", opacity: 0 }}
                   animate={{ y: "0%", opacity: 1 }}
                   transition={{
                     duration: 0.85,
@@ -72,62 +70,29 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 2.35, duration: 0.7 }}
         >
-          <MagneticLink
+          <a
             href="#sample"
-            className="bg-amber px-7 py-3.5 text-base text-soil shadow-[0_10px_30px_rgba(242,169,59,0.4)] hover:bg-amber-deep"
+            className="focus-ring inline-flex items-center justify-center rounded-full font-medium transition-colors bg-amber px-7 py-3.5 text-base text-soil shadow-[0_10px_30px_rgba(242,169,59,0.4)] hover:bg-amber-deep"
           >
             {HERO.primaryCta}
-          </MagneticLink>
-          <MagneticLink
+          </a>
+          <a
             href={WHATSAPP.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="glass-dark px-7 py-3.5 text-base text-milk"
+            className="focus-ring inline-flex items-center justify-center rounded-full font-medium transition-colors glass-dark px-7 py-3.5 text-base text-milk"
           >
             {HERO.secondaryCta}
-          </MagneticLink>
+          </a>
         </motion.div>
 
-        <div className="mt-10 flex flex-wrap gap-3">
-          {HERO.chips.map((chip, i) => (
-            <motion.div
-              key={chip}
-              className="glass-dark cursor-grow rounded-full px-4 py-2 text-sm text-milk/95"
-              initial={{ opacity: 0, y: 12 }}
-              animate={{
-                opacity: 1,
-                y: [0, -6, 0],
-              }}
-              transition={{
-                opacity: { delay: 2.5 + i * 0.1, duration: 0.5 },
-                y: {
-                  delay: 2.8 + i * 0.2,
-                  duration: 4 + i * 0.4,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                },
-              }}
-            >
-              {chip}
-            </motion.div>
+        {/* Kept in the markup for SEO and screen readers, hidden visually */}
+        <ul className="sr-only">
+          {HERO.chips.map((chip) => (
+            <li key={chip}>{chip}</li>
           ))}
-        </div>
+        </ul>
       </div>
-
-      <motion.a
-        href="#trust"
-        className="focus-ring absolute bottom-6 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-1 text-milk/80"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1, y: [0, 6, 0] }}
-        transition={{
-          opacity: { delay: 2.8 },
-          y: { delay: 3, duration: 1.6, repeat: Infinity },
-        }}
-        aria-label="Scroll to next section"
-      >
-        <span className="text-[10px] tracking-[0.25em] uppercase">Scroll</span>
-        <ChevronDown size={18} />
-      </motion.a>
     </section>
   );
 }

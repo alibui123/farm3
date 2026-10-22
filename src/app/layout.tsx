@@ -2,9 +2,8 @@ import type { Metadata } from "next";
 import { Fraunces, DM_Sans } from "next/font/google";
 import "./globals.css";
 import { SITE } from "@/lib/constants";
-import { SmoothScroll } from "@/components/providers/SmoothScroll";
-import { CustomCursor } from "@/components/providers/CustomCursor";
 import { GrainOverlay } from "@/components/ui/GrainOverlay";
+import { SmoothScroll } from "@/components/providers/SmoothScroll";
 
 const fraunces = Fraunces({
   variable: "--font-fraunces",
@@ -20,13 +19,13 @@ const dmSans = DM_Sans({
 
 export const metadata: Metadata = {
   title: {
-    default: `${SITE.name} | Farm-Fresh Milk Delivery`,
+    default: `${SITE.name} | Fresh Milk Delivery in Lahore`,
     template: `%s | ${SITE.name}`,
   },
   description: SITE.description,
   metadataBase: new URL(SITE.url),
   openGraph: {
-    title: `${SITE.name} | Pure Milk, Farm to Door`,
+    title: `${SITE.name} | Fresh Milk Delivery in Lahore`,
     description: SITE.description,
     url: SITE.url,
     siteName: SITE.name,
@@ -37,7 +36,7 @@ export const metadata: Metadata = {
         url: "https://images.unsplash.com/photo-1500595046743-cd271d694d30?auto=format&fit=crop&w=1200&q=80",
         width: 1200,
         height: 630,
-        alt: "Sunrise pasture at Al-shukr Dairy Farm",
+        alt: "Fresh milk from Al-Shukar Dairy Farms, Lahore",
       },
     ],
   },
@@ -65,10 +64,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md
         */}
         <GrainOverlay />
-        <SmoothScroll>
-          <CustomCursor />
-          {children}
-        </SmoothScroll>
+        <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>
   );

@@ -1,13 +1,13 @@
 "use client";
 
-import { STATS, WHY_CARDS } from "@/lib/constants";
+import { STATS, WHY_CARDS, WHY_INTRO } from "@/lib/constants";
 import { AnimatedCounter } from "@/components/ui/AnimatedCounter";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { SplitHeading } from "@/components/ui/SplitHeading";
 import { MilkWaveDivider } from "@/components/ui/MilkWave";
-import { FlaskConical, Clock, ScanLine, Eye } from "lucide-react";
+import { MapPin, Ban, Snowflake, PackageCheck, Gift } from "lucide-react";
 
-const ICONS = [FlaskConical, Clock, ScanLine, Eye];
+const ICONS = [MapPin, Ban, Snowflake, PackageCheck, Gift];
 
 export function WhyAlShukr() {
   return (
@@ -15,17 +15,23 @@ export function WhyAlShukr() {
       <MilkWaveDivider from="#FFFFFF" to="#FBF7EE" />
       <div className="mx-auto max-w-6xl px-5 py-20 md:px-8 md:py-28">
         <SplitHeading
-          text="Why families choose Al-shukr."
-          className="max-w-2xl font-display text-3xl font-semibold text-balance text-soil md:text-5xl"
+          text={WHY_INTRO.heading}
+          className="max-w-3xl font-display text-3xl font-semibold text-balance text-soil md:text-5xl"
         />
+        <p className="mt-4 max-w-2xl text-soil-muted">
+          {WHY_INTRO.answer}{" "}
+          <a
+            href="/quality"
+            className="focus-ring font-medium text-pasture underline underline-offset-4"
+          >
+            How we keep milk pure
+          </a>
+        </p>
 
-        <div className="mt-12 grid auto-rows-fr gap-4 md:grid-cols-4 md:grid-rows-2">
+        <div className="mt-12 grid gap-4 md:grid-cols-6">
           {WHY_CARDS.map((card, i) => {
             const Icon = ICONS[i];
-            const span =
-              card.size === "large"
-                ? "md:col-span-2 md:row-span-1"
-                : "md:col-span-1";
+            const span = card.size === "large" ? "md:col-span-3" : "md:col-span-2";
             return (
               <GlassCard
                 key={card.title}
@@ -45,15 +51,18 @@ export function WhyAlShukr() {
               key={stat.label}
               className="rounded-3xl border border-pasture/10 bg-pasture px-5 py-6 text-center text-milk"
             >
-              <AnimatedCounter
-                value={stat.value}
-                suffix={stat.suffix}
-                className="font-display text-3xl font-semibold md:text-4xl"
-              />
+              <span className="sr-only">
+                {stat.value}
+                {stat.suffix}
+              </span>
+              <span aria-hidden>
+                <AnimatedCounter
+                  value={stat.value}
+                  suffix={stat.suffix}
+                  className="font-display text-3xl font-semibold md:text-4xl"
+                />
+              </span>
               <p className="mt-2 text-sm text-sage">{stat.label}</p>
-              <p className="mt-1 text-[10px] tracking-wide text-milk/50 uppercase">
-                Illustrative
-              </p>
             </div>
           ))}
         </div>

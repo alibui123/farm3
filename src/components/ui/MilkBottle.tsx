@@ -36,17 +36,9 @@ export function MilkBottle({
               duration: 1.6,
               delay: 0.3 + delay,
               ease: [0.22, 1, 0.36, 1],
-              repeat: Infinity,
-              repeatType: "reverse",
-              repeatDelay: 1.2,
             }}
           />
-          <motion.path
-            d="M12 48 Q20 42 28 48 T44 48 V100 H12 Z"
-            fill="#E8F0E4"
-            animate={{ x: [0, 2, 0, -2, 0] }}
-            transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
-          />
+          <path d="M12 48 Q20 42 28 48 T44 48 V100 H12 Z" fill="#E8F0E4" />
         </g>
       </svg>
     </div>

@@ -8,7 +8,9 @@ import { Logo } from "@/components/ui/Logo";
 import {
   CONTACT,
   NAV_LINKS,
+  SERVICE_AREAS,
   SITE,
+  SAMPLE_HREF,
   SOCIAL,
   WHATSAPP,
 } from "@/lib/constants";
@@ -90,13 +92,14 @@ export function Footer() {
     >
       <div className="mx-auto grid max-w-6xl gap-12 px-5 py-16 md:grid-cols-[1.2fr_1fr_1fr] md:px-8 md:py-20">
         <div>
-          <Logo light />
+          <Logo full />
           <p className="mt-4 max-w-sm text-sage">{SITE.description}</p>
+          <p className="mt-3 font-display text-milk/90 italic">{SITE.tagline}</p>
           <a
             href={WHATSAPP.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="focus-ring mt-6 inline-flex items-center gap-2 rounded-full bg-[#25D366] px-5 py-2.5 text-sm font-medium text-white"
+            className="focus-ring mt-6 inline-flex items-center gap-2 rounded-full bg-[#25D366] px-5 py-2.5 text-sm font-medium text-soil"
           >
             <MessageCircle size={18} />
             WhatsApp us
@@ -120,10 +123,25 @@ export function Footer() {
             ))}
             <li>
               <a
-                href="#sample"
+                href={SAMPLE_HREF}
                 className="focus-ring text-milk/85 hover:text-amber"
               >
                 Free Sample
+              </a>
+            </li>
+            <li>
+              <a href="/faq" className="focus-ring text-milk/85 hover:text-amber">
+                FAQ
+              </a>
+            </li>
+            <li>
+              <a href="/blog" className="focus-ring text-milk/85 hover:text-amber">
+                Blog
+              </a>
+            </li>
+            <li>
+              <a href="/bulk-milk-supply" className="focus-ring text-milk/85 hover:text-amber">
+                Bulk Supply
               </a>
             </li>
           </ul>
@@ -144,6 +162,10 @@ export function Footer() {
               </a>
             </li>
             <li>{CONTACT.address}</li>
+            <li>
+              Delivering to {SERVICE_AREAS.map((a) => a.name).join(", ")} and
+              surrounding areas
+            </li>
             <li className="text-sage">{CONTACT.hours}</li>
           </ul>
           <div className="mt-5 flex gap-3">
@@ -168,7 +190,7 @@ export function Footer() {
         className="pointer-events-none select-none px-4 text-center font-display text-[clamp(3.5rem,18vw,14rem)] leading-none font-semibold tracking-[-0.04em] text-milk/10"
         aria-hidden
       >
-        AL-SHUKR
+        AL-SHUKAR
       </p>
 
       <div className="border-t border-milk/10 px-5 py-5 text-center text-sm text-sage md:px-8">

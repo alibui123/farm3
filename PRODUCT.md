@@ -8,7 +8,7 @@ web
 
 ## Stack
 
-delegated: Next.js (App Router) + TypeScript + Tailwind CSS + Framer Motion + GSAP/ScrollTrigger + Lenis + lucide-react — specified in the build brief.
+delegated: Next.js (App Router) + TypeScript + Tailwind CSS + Framer Motion + GSAP/ScrollTrigger + lucide-react (native scrolling; no smooth-scroll library) — specified in the build brief.
 
 ## Users
 

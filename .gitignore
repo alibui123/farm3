@@ -43,3 +43,6 @@ next-env.d.ts
 
 # source video duplicates (served copy lives in public/video)
 /video/
+
+# internal client documents (contain private farm details)
+/seo content/
