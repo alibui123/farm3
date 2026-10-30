@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Check, MapPin, Moon, Sun } from "lucide-react";
+import { CalendarDays, Check, MapPin, Repeat } from "lucide-react";
 import { HOW_INTRO, HOW_PHONE, HOW_STEPS, SITE } from "@/lib/constants";
 import { SplitHeading } from "@/components/ui/SplitHeading";
 import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
@@ -146,20 +146,20 @@ function ReceiveScreen({ d }: { d: number }) {
 }
 
 function SubscribeScreen({ d }: { d: number }) {
-  const evening = d > 0.4;
+  const alternate = d > 0.4;
   const done = d > 0.72;
   return (
     <div className="flex h-full flex-col px-5 pt-12 pb-6">
-      <p className="font-display text-xl text-soil">Daily delivery</p>
-      <p className="text-xs text-soil-muted">When should we come?</p>
+      <p className="font-display text-xl text-soil">Your plan</p>
+      <p className="text-xs text-soil-muted">Delivered every day, 1 to 7 pm</p>
       <div className="relative mt-6 grid grid-cols-2 rounded-full bg-soil/[0.06] p-1">
         <span
           className="absolute top-1 bottom-1 left-1 w-[calc(50%-4px)] rounded-full bg-pasture transition-transform duration-300 ease-out"
-          style={{ transform: `translateX(${evening ? "100%" : "0"})` }}
+          style={{ transform: `translateX(${alternate ? "100%" : "0"})` }}
         />
         {[
-          { label: "Morning", Icon: Sun, on: !evening },
-          { label: "Evening", Icon: Moon, on: evening },
+          { label: "Daily", Icon: CalendarDays, on: !alternate },
+          { label: "Alternate", Icon: Repeat, on: alternate },
         ].map(({ label, Icon, on }) => (
           <span
             key={label}
@@ -177,7 +177,7 @@ function SubscribeScreen({ d }: { d: number }) {
           className="[grid-area:1/1] self-end rounded-full bg-pasture py-3 text-center text-sm font-medium text-milk transition-opacity duration-300"
           style={{ opacity: done ? 0 : 1 }}
         >
-          Start daily delivery
+          Start my delivery
         </div>
         <div
           className={`[grid-area:1/1] flex flex-col items-center transition-transform duration-300 ${POP}`}

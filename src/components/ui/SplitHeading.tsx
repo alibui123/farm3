@@ -27,7 +27,7 @@ export function SplitHeading({
   const words = text.split(" ");
 
   if (reduced) {
-    // Keep each word unbreakable (e.g. "Al-Shukar"), matching the animated version.
+    // Keep each word unbreakable (e.g. "Al Shukr"), matching the animated version.
     return (
       <Tag ref={ref as never} className={className}>
         {words.map((word, i) => (

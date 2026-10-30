@@ -11,20 +11,20 @@ import {
   WHATSAPP,
   type SampleResult,
 } from "@/lib/constants";
-import { Pending } from "@/components/ui/Pending";
 import { isPkMobile } from "@/lib/phone";
 import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
 
 type Fields = { name: string; phone: string; address: string };
 type Location = { lat: number; lng: number; accuracy: number };
-export type SampleRequest = Fields & { location: Location | null; consent: boolean };
+type Milk = (typeof SAMPLE_FORM.milk.options)[number]["id"];
+export type SampleRequest = Fields & { milk: Milk; location: Location | null; consent: boolean };
 
 const empty: Fields = { name: "", phone: "", address: "" };
 
 /**
  * TODO: Wire this to Supabase (or your backend). The backend checks the
  * delivery area and duplicates, and returns one of the SAMPLE_RESULTS codes.
- * Example shape: { name, phone, address, location, consent, created_at }
+ * Example shape: { name, phone, address, milk, location, consent, created_at }
  */
 async function submitSampleRequest(data: SampleRequest): Promise<SampleResult> {
   // TODO: const { error } = await supabase.from('sample_requests').insert(data)
@@ -155,6 +155,7 @@ function ResultPanel({
 /** Free-sample request form, shared by the home page and /free-sample. */
 export function SampleRequestForm() {
   const [values, setValues] = useState<Fields>(empty);
+  const [milk, setMilk] = useState<Milk>("mixed");
   const [location, setLocation] = useState<Location | null>(null);
   const [locating, setLocating] = useState(false);
   const [locationError, setLocationError] = useState(false);
@@ -204,7 +205,7 @@ export function SampleRequestForm() {
     setSubmitting(true);
     let code: SampleResult;
     try {
-      code = await submitSampleRequest({ ...values, location, consent });
+      code = await submitSampleRequest({ ...values, milk, location, consent });
     } catch {
       code = "error";
     }
@@ -213,6 +214,7 @@ export function SampleRequestForm() {
     setResult(code);
     if (code === "success") {
       setValues(empty);
+      setMilk("mixed");
       setLocation(null);
       setConsent(false);
     }
@@ -282,6 +284,32 @@ export function SampleRequestForm() {
               );
             })}
 
+            <fieldset>
+              <legend className="mb-1.5 text-sm font-medium text-soil">{SAMPLE_FORM.milk.label}</legend>
+              <div className="grid grid-cols-3 gap-2">
+                {SAMPLE_FORM.milk.options.map((option) => (
+                  <label
+                    key={option.id}
+                    className={`flex cursor-pointer items-center justify-center rounded-2xl border px-3 py-3 text-sm font-medium transition-colors has-[:focus-visible]:ring-4 has-[:focus-visible]:ring-amber/25 ${
+                      milk === option.id
+                        ? "border-pasture bg-pasture text-milk"
+                        : "border-pasture/15 bg-milk text-soil hover:border-pasture/40"
+                    }`}
+                  >
+                    <input
+                      type="radio"
+                      name="milk"
+                      value={option.id}
+                      checked={milk === option.id}
+                      onChange={() => setMilk(option.id)}
+                      className="sr-only"
+                    />
+                    {option.label}
+                  </label>
+                ))}
+              </div>
+            </fieldset>
+
             <div>
               <p className="mb-1.5 text-sm font-medium text-soil">{SAMPLE_FORM.location.label}</p>
               {location ? (
@@ -330,14 +358,19 @@ export function SampleRequestForm() {
                   aria-describedby={errors.consent ? "consent-error" : undefined}
                   className="focus-ring mt-0.5 h-5 w-5 shrink-0 accent-[var(--pasture)]"
                 />
-                {SAMPLE_FORM.consent}
+                <span>
+                  {SAMPLE_FORM.consent}{" "}
+                  <a href="/privacy" target="_blank" className="focus-ring font-medium text-pasture underline underline-offset-4">
+                    {SAMPLE_FORM.privacyLink}
+                  </a>
+                  .
+                </span>
               </label>
               {errors.consent && (
                 <span id="consent-error" className="mt-1.5 block text-sm text-red-700">
                   {errors.consent}
                 </span>
               )}
-              <Pending className="mt-3">{SAMPLE_FORM.privacyPending}</Pending>
             </div>
 
             <button

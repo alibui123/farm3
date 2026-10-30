@@ -51,7 +51,7 @@ export function ChecksAndCertificates() {
               ))}
             </ul>
           ) : (
-            <Pending className="mt-8">{QUALITY_CHECKS.pendingNote}</Pending>
+            QUALITY_CHECKS.pendingNote && <Pending className="mt-8">{QUALITY_CHECKS.pendingNote}</Pending>
           )}
         </div>
 

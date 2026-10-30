@@ -119,6 +119,13 @@ function ContactForm() {
             >
               {status === "sending" ? CONTACT_FORM.loading : CONTACT_FORM.submit}
             </button>
+            <p className="text-center text-xs text-soil-muted">
+              By sending this form you agree to our{" "}
+              <a href="/privacy" className="focus-ring font-medium text-pasture underline underline-offset-4">
+                Privacy Policy
+              </a>
+              .
+            </p>
           </motion.form>
         )}
       </AnimatePresence>
@@ -150,12 +157,13 @@ export function ContactDetails() {
     },
     {
       channel: "Email",
-      value: (
+      value: CONTACT.email ? (
         <a href={`mailto:${CONTACT.email}`} className={link}>
           {CONTACT.email}
         </a>
-      ),
-      pending,
+      ) : null,
+      pending: !CONTACT.email,
+      hidden: !CONTACT.email && !SHOW_PENDING,
     },
     {
       channel: "Business hours",
@@ -165,7 +173,7 @@ export function ContactDetails() {
     },
     {
       channel: "Service areas",
-      value: `${SERVICE_AREAS.map((a) => a.name).join(", ")} and surrounding areas, Lahore`,
+      value: `${SERVICE_AREAS.map((a) => a.name).join(", ")}, Lahore`,
     },
     { channel: "Farm visits", value: "On request, by WhatsApp" },
     ...SOCIAL.map((s) => ({

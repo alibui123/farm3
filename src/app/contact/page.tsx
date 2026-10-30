@@ -44,7 +44,7 @@ const jsonLd = [
                 "@type": "ContactPoint",
                 contactType: "customer service",
                 telephone: CONTACT.phone,
-                email: CONTACT.email,
+                ...(CONTACT.email ? { email: CONTACT.email } : {}),
                 areaServed: SERVICE_AREAS.map((a) => `${a.name}, Lahore`),
                 availableLanguage: ["English", "Urdu"],
               },

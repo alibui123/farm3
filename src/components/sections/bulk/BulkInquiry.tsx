@@ -340,6 +340,13 @@ export function BulkInquiry() {
                 >
                   {status === "sending" ? BULK_FORM.loading : BULK_FORM.submit}
                 </button>
+                <p className="text-center text-xs text-soil-muted">
+                  By sending this form you agree to our{" "}
+                  <a href="/privacy" className="focus-ring font-medium text-pasture underline underline-offset-4">
+                    Privacy Policy
+                  </a>
+                  .
+                </p>
               </motion.form>
             )}
           </AnimatePresence>

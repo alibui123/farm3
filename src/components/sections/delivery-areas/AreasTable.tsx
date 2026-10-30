@@ -22,7 +22,7 @@ export function AreasTable() {
 
         <div className="mt-10 overflow-x-auto rounded-3xl border border-pasture/10 bg-cream/60">
           <table className="w-full min-w-[560px] border-collapse text-left text-sm md:text-base">
-            <caption className="sr-only">Al-Shukar fresh milk delivery areas in Lahore</caption>
+            <caption className="sr-only">Al Shukr fresh milk delivery areas in Lahore</caption>
             <thead>
               <tr className="bg-pasture text-milk">
                 {["Area", "Also searched as", "Delivery times", ...(showPages ? ["Page"] : [])].map(
@@ -60,7 +60,7 @@ export function AreasTable() {
                   )}
                 </tr>
               ))}
-              {(surrounding || SHOW_PENDING) && (
+              {(surrounding?.length || (!surrounding && SHOW_PENDING)) && (
                 <tr className="border-t border-pasture/10">
                   <th scope="row" className="px-5 py-5 font-display text-lg font-medium text-soil">
                     Surrounding areas

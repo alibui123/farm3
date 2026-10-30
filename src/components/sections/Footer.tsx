@@ -153,18 +153,19 @@ export function Footer() {
           </p>
           <ul className="mt-4 space-y-2 text-milk/85">
             <li>{CONTACT.phone}</li>
-            <li>
-              <a
-                href={`mailto:${CONTACT.email}`}
-                className="focus-ring hover:text-amber"
-              >
-                {CONTACT.email}
-              </a>
-            </li>
+            {CONTACT.email && (
+              <li>
+                <a
+                  href={`mailto:${CONTACT.email}`}
+                  className="focus-ring hover:text-amber"
+                >
+                  {CONTACT.email}
+                </a>
+              </li>
+            )}
             <li>{CONTACT.address}</li>
             <li>
-              Delivering to {SERVICE_AREAS.map((a) => a.name).join(", ")} and
-              surrounding areas
+              Delivering to {SERVICE_AREAS.map((a) => a.name).join(", ")}
             </li>
             <li className="text-sage">{CONTACT.hours}</li>
           </ul>
@@ -190,11 +191,17 @@ export function Footer() {
         className="pointer-events-none select-none px-4 text-center font-display text-[clamp(3.5rem,18vw,14rem)] leading-none font-semibold tracking-[-0.04em] text-milk/10"
         aria-hidden
       >
-        AL-SHUKAR
+        AL SHUKR
       </p>
 
       <div className="border-t border-milk/10 px-5 py-5 text-center text-sm text-sage md:px-8">
         © {new Date().getFullYear()} {SITE.name}. All rights reserved.
+        <span className="mx-2 text-milk/30" aria-hidden>
+          ·
+        </span>
+        <a href="/privacy" className="focus-ring hover:text-amber">
+          Privacy Policy
+        </a>
       </div>
     </footer>
   );

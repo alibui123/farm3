@@ -1,9 +1,9 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Moon, Sun } from "lucide-react";
-import { AREAS_WHERE, SERVICE_AREAS } from "@/lib/constants";
+import { Clock, Moon, Sun } from "lucide-react";
+import { AREAS_WHERE, DELIVERY_TIMES, SERVICE_AREAS } from "@/lib/constants";
 import { SplitHeading } from "@/components/ui/SplitHeading";
 import { OrganicBlob } from "@/components/ui/MilkWave";
 import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
@@ -148,7 +148,6 @@ function AreaMap({ round, on, reduced }: { round: Round; on: boolean; reduced: b
 }
 
 export function WhereWeDeliver() {
-  const [round, setRound] = useState<Round>("morning");
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-20% 0px" });
   const reduced = usePrefersReducedMotion();
@@ -169,34 +168,12 @@ export function WhereWeDeliver() {
         </div>
 
         <div ref={ref}>
-          <AreaMap round={round} on={inView} reduced={reduced} />
+          <AreaMap round="morning" on={inView} reduced={reduced} />
           <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <div className="relative grid w-fit grid-cols-2 rounded-full bg-soil/[0.06] p-1" role="group" aria-label="Show delivery round">
-              <span
-                className="absolute top-1 bottom-1 left-1 w-[calc(50%-4px)] rounded-full bg-pasture transition-transform duration-300 ease-out"
-                style={{ transform: `translateX(${round === "evening" ? "100%" : "0"})` }}
-                aria-hidden
-              />
-              {(
-                [
-                  { id: "morning", label: "Morning", Icon: Sun },
-                  { id: "evening", label: "Evening", Icon: Moon },
-                ] as const
-              ).map(({ id, label, Icon }) => (
-                <button
-                  key={id}
-                  type="button"
-                  aria-pressed={round === id}
-                  onClick={() => setRound(id)}
-                  className={`focus-ring relative flex items-center justify-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium whitespace-nowrap transition-colors duration-300 ${
-                    round === id ? "text-milk" : "text-soil-muted hover:text-soil"
-                  }`}
-                >
-                  <Icon size={15} aria-hidden />
-                  {label} round
-                </button>
-              ))}
-            </div>
+            <p className="inline-flex w-fit items-center gap-2 rounded-full bg-pasture px-4 py-2 text-sm font-medium text-milk">
+              <Clock size={15} aria-hidden />
+              Daily, {DELIVERY_TIMES.window}
+            </p>
             <p className="text-xs text-soil-muted">{AREAS_WHERE.mapCaption}</p>
           </div>
         </div>

@@ -28,9 +28,6 @@ export function DeliveryAreas() {
                 <span className="text-pasture/70">({area.alias})</span>
               </li>
             ))}
-            <li className="inline-flex items-center rounded-full border border-pasture/15 px-4 py-2 text-sm text-soil-muted">
-              and surrounding areas
-            </li>
           </ul>
 
           <a

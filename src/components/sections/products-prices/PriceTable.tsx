@@ -10,17 +10,20 @@ import {
 } from "@/lib/constants";
 import { SplitHeading } from "@/components/ui/SplitHeading";
 import { OrganicBlob } from "@/components/ui/MilkWave";
-import { Pending, PendingBadge } from "@/components/ui/Pending";
+import { PendingBadge } from "@/components/ui/Pending";
 
 /** Answer block built from PRODUCTS so it always matches the table. */
 function priceAnswer() {
   const priced = PRODUCTS.filter((p) => p.price);
   const unpriced = PRODUCTS.filter((p) => !p.price);
-  const parts = priced.map((p) =>
-    p.id === "mixed"
-      ? `Mixed (cow and buffalo) milk from Al-Shukar Dairy Farms costs Rs ${p.price} per litre in Lahore.`
-      : `${p.name} costs Rs ${p.price} per litre.`,
-  );
+  const kind = (p: (typeof PRODUCTS)[number]) =>
+    p.id === "mixed" ? "mixed (cow and buffalo)" : p.label.toLowerCase();
+  const list = priced.map((p) => `Rs ${p.price} for ${kind(p)}`);
+  const parts: string[] = [];
+  if (list.length) {
+    const joined = list.length > 1 ? `${list.slice(0, -1).join(", ")} and ${list.at(-1)}` : list[0];
+    parts.push(`At Al Shukr Dairy in Lahore, fresh milk costs ${joined}, per litre.`);
+  }
   if (unpriced.length) {
     const names = unpriced.map((p) => p.label.toLowerCase()).join(" and ");
     parts.push(`Message us on WhatsApp for today's ${names} milk rates.`);
@@ -104,7 +107,7 @@ export function PriceTable() {
         <div className="mt-12 hidden overflow-x-auto rounded-3xl border border-pasture/10 bg-milk/70 shadow-[0_24px_60px_rgba(43,33,24,0.06)] md:block">
           <table className="w-full min-w-[720px] border-collapse text-left text-sm md:text-base">
             <caption className="sr-only">
-              Al-Shukar fresh milk prices per litre in Lahore, last updated{" "}
+              Al Shukr fresh milk prices per litre in Lahore, last updated{" "}
               {PRICES_UPDATED}
             </caption>
             <thead>
@@ -149,7 +152,14 @@ export function PriceTable() {
           </a>
         </div>
 
-        <Pending className="mt-6">{PRICE_TABLE.pendingTerms}</Pending>
+        <dl className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {PRICE_TABLE.terms.map((term) => (
+            <div key={term.label} className="rounded-2xl border border-pasture/10 bg-milk/70 px-4 py-3">
+              <dt className="text-xs font-semibold tracking-wider text-pasture uppercase">{term.label}</dt>
+              <dd className="mt-1 text-sm text-soil">{term.value}</dd>
+            </div>
+          ))}
+        </dl>
       </div>
     </section>
   );

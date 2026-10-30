@@ -24,7 +24,7 @@ export function PracticesTable() {
         <div className="mt-12 overflow-x-auto rounded-3xl border border-pasture/10 bg-cream/60">
           <table className="w-full min-w-[560px] border-collapse text-left text-sm md:text-base">
             <caption className="sr-only">
-              What Al-Shukar Dairy Farms does to keep milk pure, and what each practice means for you
+              What Al Shukr Dairy does to keep milk pure, and what each practice means for you
             </caption>
             <thead>
               <tr className="bg-pasture text-milk">

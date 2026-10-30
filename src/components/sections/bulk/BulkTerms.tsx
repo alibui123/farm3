@@ -44,7 +44,7 @@ export function BulkTerms() {
 
         <div className="mt-10 hidden overflow-x-auto rounded-3xl border border-pasture/10 bg-cream/60 md:block">
           <table className="w-full min-w-[480px] border-collapse text-left text-sm md:text-base">
-            <caption className="sr-only">What to know before ordering bulk milk from Al-Shukar Dairy Farms</caption>
+            <caption className="sr-only">What to know before ordering bulk milk from Al Shukr Dairy</caption>
             <thead>
               <tr className="bg-pasture text-milk">
                 <th scope="col" className="px-5 py-4 font-display text-lg font-semibold">Topic</th>

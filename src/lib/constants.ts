@@ -1,34 +1,34 @@
 /**
- * Al-Shukar Dairy Farms — editable site copy, stats, media & links.
- * Source of truth: "seo content/Al-Shukar Dairy Farms SEO, AEO & GEO Website Content.md".
+ * Al Shukr Dairy — editable site copy, stats, media & links.
+ * Source of truth: "seo content/Al Shukr Dairy SEO, AEO & GEO Website Content.md".
  * Keep business facts word-for-word identical across sections, schema and footer.
  * Never publish unconfirmed facts: leave them out instead of shipping [PLACEHOLDER] text.
  */
 
 export const SITE = {
-  name: "Al-Shukar Dairy Farms",
-  shortName: "Al-Shukar",
+  name: "Al Shukr Dairy",
+  shortName: "Al Shukr",
   tagline: "Shukar ke saath, khalis doodh.",
   /** 25-word boilerplate from the fact sheet. */
   description:
-    "Al-Shukar Dairy Farms is a family-owned Lahore dairy farm, founded in 2023, delivering fresh cow, buffalo and mixed milk to homes in Askari and DHA.",
+    "Al Shukr Dairy is a family-owned Lahore dairy farm, founded in 2023, delivering fresh cow, buffalo and mixed milk to homes in Askari and DHA.",
   founded: "2023",
   owner: "The Alvi Family",
   locale: "en_PK",
-  url: "https://alshukrdairy.pk", // TODO: placeholder — replace with the confirmed domain
+  url: "https://alshukrdairy.pk", // TODO: domain not bought yet; the client plans "alshukrdairy" (extension to confirm)
 } as const;
 
 export const HOME_META = {
-  title: "Fresh Milk Delivery in Lahore | Al-Shukar Dairy Farms",
+  title: "Fresh Milk Delivery in Lahore | Al Shukr Dairy",
   description:
     "Farm-fresh cow, buffalo and mixed milk delivered to Askari and DHA, Lahore. No water, no preservatives. Get a free 1-litre sample.",
 } as const;
 
-/** TODO: Replace with your real WhatsApp number (country code, no + or spaces). */
+/** Country code, no + or spaces. */
 export const WHATSAPP = {
-  number: "923001234567",
+  number: "923412001648",
   prefilledMessage:
-    "Salam! I found Al-Shukar Dairy Farms on your website and I would like to know more about your fresh milk delivery.",
+    "Salam! I found Al Shukr Dairy on your website and I would like to know more about your fresh milk delivery.",
   get href() {
     return whatsappLink(this.prefilledMessage);
   },
@@ -51,12 +51,12 @@ export const SHOW_PENDING = process.env.NODE_ENV === "development";
 /** The free-sample page; the home page also keeps its own #sample form. */
 export const SAMPLE_HREF = "/free-sample";
 
-/** TODO: phone and email are placeholders until the client confirms them. */
+/** email: null until the client sets one up; every email link is hidden meanwhile. */
 export const CONTACT = {
-  phone: "+92 300 1234567",
-  email: "hello@alshukrdairy.pk",
+  phone: "+92 341 2001648",
+  email: null as string | null,
   address: "Lahore, Punjab, Pakistan. Farm visits on request.",
-  hours: "Delivery every morning and evening",
+  hours: "Delivery every day, 1:00 pm to 7:00 pm",
 } as const;
 
 /**
@@ -89,7 +89,7 @@ export const NAV_LINKS = [
 export const HERO = {
   headline: "Fresh Milk Delivery in Lahore, Straight from Our Own Herd",
   subtext:
-    "Shukar ke saath, khalis doodh. Cow, buffalo and mixed milk, chilled right after milking and delivered in sealed pouches every morning and evening.",
+    "Shukar ke saath, khalis doodh. Cow, buffalo and mixed milk, chilled right after milking and delivered in sealed pouches every day between 1 and 7 pm.",
   primaryCta: "Get Your Free 1-Litre Sample",
   secondaryCta: "Chat on WhatsApp",
   chips: [
@@ -108,13 +108,13 @@ export const TRUST_ITEMS = [
   "Chilled Immediately",
   "Regular In-House Quality Checks",
   "Sealed Pouches",
-  "Morning & Evening Delivery",
+  "Daily Delivery, 1 to 7 PM",
 ] as const;
 
 export const ABOUT = {
-  heading: "What is Al-Shukar Dairy Farms?",
+  heading: "What is Al Shukr Dairy?",
   answer:
-    "Al-Shukar Dairy Farms is a family-owned dairy farm in Lahore, founded in 2023 by the Alvi Family. We deliver fresh cow, buffalo and mixed milk from our own tagged herd to homes in Askari X, Askari XI, DHA and surrounding areas, in sealed pouches, every morning and evening.",
+    "Al Shukr Dairy is a family-owned dairy farm in Lahore, founded in 2023 by the Alvi Family. We deliver fresh cow, buffalo and mixed milk from our own tagged herd to homes in Askari X, Askari XI and DHA, in sealed pouches, every day between 1 and 7 pm.",
 } as const;
 
 /** Farm-to-door steps for the "pouch journey" scroll section. */
@@ -138,30 +138,30 @@ export const STORY_STEPS = [
       "Our team runs regular in-house quality checks, then packs the milk in sealed pouches. Nothing is added.",
   },
   {
-    label: "Twice a day",
+    label: "Every afternoon",
     title: "Delivered to your door",
     description:
-      "Our riders deliver every morning and evening to homes in Askari X, Askari XI and DHA.",
+      "Our riders deliver every day between 1 and 7 pm to homes in Askari X, Askari XI and DHA.",
   },
 ] as const;
 
 /** Update whenever any price changes. */
-export const PRICES_UPDATED = "20 October 2026";
+export const PRICES_UPDATED = "29 October 2026";
 
 export const PRODUCTS_INTRO = {
   heading: "Which milk should I choose: cow, buffalo or mixed?",
   answer:
-    "We sell three types. Cow milk is lighter. Buffalo milk is thicker and creamier. Mixed milk combines both. Mixed milk costs Rs 250 per litre.",
+    "We sell three types. Cow milk is lighter. Buffalo milk is thicker and creamier. Mixed milk combines both. Cow milk costs Rs 240, buffalo milk Rs 260 and mixed milk Rs 250 per litre.",
 } as const;
 
-/** price: null hides the price until the client confirms it. */
+/** price: null hides the price and shows an "Ask today's rate" link instead. */
 export const PRODUCTS = [
   {
     id: "cow",
     name: "Fresh Cow Milk",
     localName: "Gaye ka doodh",
     description: "Lighter taste and texture, for everyday drinking.",
-    price: null,
+    price: 240 as number | null,
     label: "Cow",
   },
   {
@@ -170,7 +170,7 @@ export const PRODUCTS = [
     localName: "Bhains ka doodh",
     description:
       "Thicker, creamier and richer in fat. Many homes use it for tea, kheer and dahi.",
-    price: null,
+    price: 260 as number | null,
     label: "Buffalo",
   },
   {
@@ -178,14 +178,14 @@ export const PRODUCTS = [
     name: "Fresh Mixed Milk",
     localName: "Mila hua doodh",
     description:
-      "Cow and buffalo milk together: a balance of both for the whole family.",
-    price: 250,
+      "Cow and buffalo milk together (61% cow, 39% buffalo): a balance of both for the whole family.",
+    price: 250 as number | null,
     label: "Mixed",
   },
 ] as const;
 
 export const WHY_INTRO = {
-  heading: "Why do families in Lahore choose Al-Shukar milk?",
+  heading: "Why do families in Lahore choose Al Shukr milk?",
   answer:
     "Families choose us because they can trace their milk to one farm. The milk comes from our own herd, with no water, preservatives or chemicals added, and is chilled right after milking.",
 } as const;
@@ -208,7 +208,7 @@ export const WHY_CARDS = [
   },
   {
     title: "Sealed and on time",
-    body: "Morning and evening delivery in sealed pouches.",
+    body: "Daily delivery between 1 and 7 pm, in sealed pouches.",
     size: "small" as const,
   },
   {
@@ -218,21 +218,18 @@ export const WHY_CARDS = [
   },
 ] as const;
 
-/**
- * Verified facts only. Add the herd count here once the client confirms the
- * real number and the date it was counted — never a rounded-up figure.
- */
+/** Verified facts only. Herd count from the client's answers (29 Oct 2026); never round it up. */
 export const STATS = [
   { value: 2023, suffix: "", label: "The year we started" },
-  { value: 2, suffix: "", label: "Deliveries a day, morning and evening" },
+  { value: 65, suffix: "", label: "Animals in our own herd" },
   { value: 3, suffix: "", label: "Milk types: cow, buffalo and mixed" },
   { value: 1, suffix: " L", label: "Free sample for every eligible home" },
 ] as const;
 
 export const HOW_INTRO = {
-  heading: "How does Al-Shukar milk delivery work?",
+  heading: "How does Al Shukr milk delivery work?",
   answer:
-    "You request a free sample, we verify your address on WhatsApp, and we deliver 1 litre to your door. If you like it, you choose your milk and delivery time and we start your daily delivery.",
+    "You request a free sample, we verify your address on WhatsApp, and we deliver 1 litre to your door. If you like it, you choose your milk and your plan and we start your delivery.",
 } as const;
 
 export const HOW_STEPS = [
@@ -250,7 +247,7 @@ export const HOW_STEPS = [
   },
   {
     title: "Subscribe",
-    body: "Choose morning or evening delivery if you love it.",
+    body: "Choose a daily, alternate-day or weekly plan if you love it.",
   },
 ] as const;
 
@@ -272,10 +269,10 @@ export const HOW_PHONE = {
 } as const;
 
 export const COMPARISON = {
-  heading: "How is Al-Shukar milk different from loose and packaged milk?",
+  heading: "How is Al Shukr milk different from loose and packaged milk?",
   answer:
-    "Al-Shukar milk is fresh, unprocessed and traceable to one farm. Loose milk from open cans cannot be checked by the buyer, and packaged milk is heat-treated and can be days or weeks old. Here is how the three compare.",
-  columns: ["Al-Shukar", "Loose milk (open can)", "Packaged milk"],
+    "Al Shukr milk is fresh, unprocessed and traceable to one farm. Loose milk from open cans cannot be checked by the buyer, and packaged milk is heat-treated and can be days or weeks old. Here is how the three compare.",
+  columns: ["Al Shukr", "Loose milk (open can)", "Packaged milk"],
   rows: [
     {
       label: "Source",
@@ -312,7 +309,7 @@ export const COMPARISON = {
     {
       label: "Delivery",
       values: [
-        "Morning and evening, sealed pouch",
+        "Daily to your door, sealed pouch",
         "Often an open can",
         "Bought from a shop",
       ],
@@ -329,7 +326,7 @@ export const SAMPLE = {
   rules: [
     "1 litre in a sealed pouch",
     "One per household",
-    "Askari X, Askari XI, DHA and surrounding areas only",
+    "Askari X, Askari XI and DHA only",
   ],
   submit: "Request My Free Sample",
   loading: "Checking your area...",
@@ -345,6 +342,14 @@ export const SAMPLE_FORM = {
     },
     address: { label: "Delivery address in Lahore", hint: null },
   },
+  milk: {
+    label: "Which milk would you like to try?",
+    options: [
+      { id: "cow", label: "Cow" },
+      { id: "buffalo", label: "Buffalo" },
+      { id: "mixed", label: "Mixed" },
+    ],
+  },
   /*
    * The SEO draft asks for a map pin. Until a maps provider is chosen, the
    * browser's location sharing gives the rider the same coordinates.
@@ -357,10 +362,9 @@ export const SAMPLE_FORM = {
     hint: "The pin helps our rider find you and confirms you are in our delivery area.",
     denied: "Location was not shared. You can still send the form, and we will ask on WhatsApp.",
   },
-  // TODO: link "Privacy Policy" here once the approved policy page exists.
-  consent: "I agree to be contacted on WhatsApp about this sample.",
-  privacyPending:
-    'Consent should read "...and I have read the Privacy Policy", linked to an approved /privacy page. The form collects names, phone numbers and locations.',
+  /** Rendered as: consent + linked "Privacy Policy" + "." */
+  consent: "I agree to be contacted on WhatsApp about this sample, and I have read the",
+  privacyLink: "Privacy Policy",
   errors: {
     name: "Please enter your name.",
     phone: "Enter a Pakistani mobile number, for example 0300 1234567.",
@@ -380,7 +384,7 @@ export const SAMPLE_RESULTS = {
   },
   outside_area: {
     title: "Sorry, we do not deliver to this location yet.",
-    body: "We deliver to Askari X, Askari XI, DHA and surrounding areas. Message us on WhatsApp if you think this is a mistake.",
+    body: "We deliver to Askari X, Askari XI and DHA. Message us on WhatsApp to join our waiting list, or if you think this is a mistake.",
   },
   duplicate: {
     title: "We already have a sample request for this number.",
@@ -401,14 +405,14 @@ export type SampleResult = keyof typeof SAMPLE_RESULTS;
 export const AREAS = {
   heading: "Fresh milk delivery in Lahore: where do we deliver?",
   answer:
-    "We deliver to Askari X, Askari XI, DHA and surrounding areas in Lahore, every morning and evening. If you live nearby, send us your location and we will confirm on WhatsApp.",
+    "We deliver to Askari X, Askari XI and DHA in Lahore, every day between 1 and 7 pm. If you live nearby, send us your location and we will confirm on WhatsApp.",
   cta: "Check your area on WhatsApp",
 } as const;
 
 /** Only questions with confirmed answers. Mirrored into FAQPage schema on the home page. */
 export const QUICK_ANSWERS = [
   {
-    q: "Is Al-Shukar milk free of water and preservatives?",
+    q: "Is Al Shukr milk free of water and preservatives?",
     a: "Yes. We add no water, preservatives or chemicals.",
   },
   {
@@ -417,7 +421,7 @@ export const QUICK_ANSWERS = [
   },
   {
     q: "When do you deliver?",
-    a: "We deliver every morning and evening, in sealed pouches.",
+    a: "Every day between 1:00 pm and 7:00 pm, in sealed pouches.",
   },
   {
     q: "Do I need to boil the milk?",
@@ -440,15 +444,14 @@ export const TESTIMONIALS: readonly {
   role: string;
 }[] = [];
 
-/** TODO: replace with the real profile links once confirmed. */
 export const SOCIAL = [
-  { label: "Instagram", href: "https://instagram.com/" },
-  { label: "Facebook", href: "https://facebook.com/" },
+  { label: "Instagram", href: "https://www.instagram.com/alshukrdairy" },
+  { label: "Facebook", href: "https://www.facebook.com/profile.php?id=61585744942693" },
 ] as const;
 
 export const FINAL_CTA = {
   headline: "Taste the difference before you commit.",
-  text: "Request your free 1-litre sample of Al-Shukar milk. Delivered fresh to your door in Askari or DHA, Lahore.",
+  text: "Request your free 1-litre sample of Al Shukr milk. Delivered fresh to your door in Askari or DHA, Lahore.",
   button: "Get Your Free Sample",
   secondary: "Chat on WhatsApp",
 } as const;
@@ -458,10 +461,10 @@ export const FINAL_CTA = {
 /* ------------------------------------------------------------------ */
 
 export const OUR_FARM_META = {
-  title: "Our Dairy Farm in Lahore | Al-Shukar Dairy Farms",
+  title: "Our Dairy Farm in Lahore | Al Shukr Dairy",
   // The SEO draft also lists "fresh fodder"; add it back once the client confirms it.
   description:
-    "Meet the Alvi Family and the herd behind Al-Shukar milk: tagged cows and buffalo, machine milking and instant chilling at our dairy farm in Lahore.",
+    "Meet the Alvi Family and the herd behind Al Shukr milk: tagged cows and buffalo, machine milking and instant chilling at our dairy farm in Lahore.",
 } as const;
 
 /** TODO: swap for shoot-list photo #1 (al-shukar-herd-shed-lahore.webp) once it exists. */
@@ -479,9 +482,9 @@ export const OUR_FARM_HERO = {
 } as const;
 
 export const FARM_OWNERS = {
-  heading: "Who runs Al-Shukar Dairy Farms?",
+  heading: "Who runs Al Shukr Dairy?",
   answer:
-    "Al-Shukar Dairy Farms is a dairy farm in Lahore, owned and run by the Alvi Family. Since 2023 we have kept our own herd of cows and buffalo and delivered their milk fresh to homes in Askari and DHA. You can ask us about any step, because one family is responsible from the shed to your door.",
+    "Al Shukr Dairy is a dairy farm in Lahore, owned and run by the Alvi Family. Since 2023 we have kept our own herd of cows and buffalo and delivered their milk fresh to homes in Askari and DHA. You can ask us about any step, because one family is responsible from the shed to your door.",
 } as const;
 
 /**
@@ -495,7 +498,7 @@ export const HERD_SNAPSHOT = {
     { label: "Owned by", value: SITE.owner },
     { label: "Founded", value: SITE.founded },
     { label: "Based in", value: "Lahore, Punjab" },
-    { label: "Animals in our herd", value: null },
+    { label: "Animals in our herd", value: "65 (35 grown, 30 young)" },
     { label: "Cows", value: null },
     { label: "Buffalo", value: null },
     { label: "Milk types", value: "Cow, buffalo and mixed" },
@@ -521,7 +524,7 @@ export const ANIMAL_CARE = {
   heading: "How do we care for our animals?",
   /** Confirmed-only answer. Extend it as practices below are confirmed. */
   answer:
-    "Every cow and buffalo on our farm is individually tagged, so we can follow every litre back to the animal it came from. One family looks after the herd every day, and you can ask us about any part of how they are kept.",
+    "Every cow and buffalo on our farm is individually tagged, so we can follow every litre back to the animal it came from. Their fodder is grown on our own land. One family looks after the herd every day, and you can ask us about any part of how they are kept.",
   practices: [
     {
       id: "tag",
@@ -532,10 +535,10 @@ export const ANIMAL_CARE = {
     },
     {
       id: "fodder",
-      title: "Fresh-cut fodder from our own land",
-      body: "The herd is fed fresh-cut fodder grown on the farm.",
-      confirmed: false,
-      pendingNote: "Which crops, and how often they are cut.",
+      title: "Fodder from our own land",
+      body: "The herd's fodder is grown on our own land, cut once a year and stored with care.",
+      confirmed: true,
+      pendingNote: null,
     },
     {
       id: "water",
@@ -556,7 +559,7 @@ export const ANIMAL_CARE = {
       title: "Vet care",
       body: null,
       confirmed: false,
-      pendingNote: "Only add if the client confirms a vet schedule.",
+      pendingNote: 'Client said "bi-weekly" vet check-ups: confirm twice a week or every two weeks, then add the body text.',
     },
   ] as {
     id: string;
@@ -577,7 +580,7 @@ export const FARM_TO_HOME = {
     { title: "Chilling", body: "The milk is chilled immediately after milking." },
     { title: "Quality checks", body: "Our team runs regular in-house quality checks." },
     { title: "Sealing", body: "Milk is packed in sealed pouches." },
-    { title: "Delivery", body: "Our riders deliver every morning and evening." },
+    { title: "Delivery", body: "Our riders deliver every day between 1 and 7 pm." },
   ],
 } as const;
 
@@ -587,7 +590,7 @@ export const FARM_VISIT = {
     "Yes, farm visits are possible on request. Message us on WhatsApp to arrange a time. We share the exact location when your visit is confirmed.",
   cta: "Request a farm visit on WhatsApp",
   /** Same pre-filled message as the Contact page's "Farm visit" topic (SEO doc). */
-  whatsappMessage: "Salam! I would like to visit the Al-Shukar farm. When can I come?",
+  whatsappMessage: "Salam! I would like to visit the Al Shukr farm. When can I come?",
 } as const;
 
 export const OUR_FARM_CTA = {
@@ -600,9 +603,9 @@ export const OUR_FARM_CTA = {
 /* ------------------------------------------------------------------ */
 
 export const PRODUCTS_PAGE_META = {
-  title: "Cow, Buffalo & Mixed Milk Price in Lahore | Al-Shukar",
+  title: "Cow, Buffalo & Mixed Milk Price in Lahore | Al Shukr",
   description:
-    "Fresh mixed milk Rs 250 per litre, plus cow and buffalo milk, delivered in sealed pouches to Askari and DHA, Lahore. See today's prices.",
+    "Fresh cow milk Rs 240, buffalo Rs 260 and mixed Rs 250 per litre, delivered in sealed pouches to Askari and DHA, Lahore. See today's prices.",
 } as const;
 
 /** TODO: swap for shoot-list photo #11 (al-shukar-milk-pouches.webp) once it exists. */
@@ -615,17 +618,21 @@ export const PRODUCTS_PAGE_MEDIA = {
 export const PRODUCTS_PAGE_HERO = {
   headline: "Fresh Milk Prices in Lahore: Cow, Buffalo and Mixed",
   subtext:
-    "Doodh ka rate, clearly shown. Pick your milk, pick morning or evening, and we deliver it fresh in a sealed pouch.",
-  chips: ["Mixed milk Rs 250 per litre", "Sealed pouches", "Morning and evening delivery"],
+    "Doodh ka rate, clearly shown. Pick your milk and your plan, and we deliver it fresh in a sealed pouch.",
+  chips: ["Cow Rs 240, buffalo Rs 260, mixed Rs 250 per litre", "1 L and 2 L sealed pouches", "Daily delivery, 1 to 7 pm"],
 } as const;
 
 /** The answer paragraph is built from PRODUCTS prices, so it can never disagree with the table. */
 export const PRICE_TABLE = {
-  heading: "How much does fresh milk cost with Al-Shukar?",
-  packaging: "Sealed pouch",
-  delivery: "Morning and evening",
-  pendingTerms:
-    'Delivery charges, minimum order and subscription options (daily, alternate days). If delivery is free, say "Free delivery in our service areas".',
+  heading: "How much does fresh milk cost with Al Shukr?",
+  packaging: "Sealed pouch, 1 L or 2 L",
+  delivery: "Daily, 1 to 7 pm",
+  terms: [
+    { label: "Delivery charge", value: "Rs 100, free on orders above 5 litres" },
+    { label: "Minimum order", value: "1 litre" },
+    { label: "Plans", value: "Daily, alternate days or weekly" },
+    { label: "Payment", value: "Easypaisa, JazzCash, bank transfer or cash on delivery" },
+  ],
 } as const;
 
 /**
@@ -651,9 +658,9 @@ export const MILK_DETAILS = {
   mixed: {
     heading: "What is mixed (cow and buffalo) milk?",
     answer:
-      "Mixed milk is a blend of our cow and buffalo milk. It gives a balance of lightness and creaminess for everyday use.",
+      "Mixed milk is a blend of our cow and buffalo milk: 61% cow and 39% buffalo. It gives a balance of lightness and creaminess for everyday use.",
     texture: 0.5,
-    pendingNote: "The blend ratio, only if the client confirms it." as string | null,
+    pendingNote: null as string | null,
   },
 } as const;
 
@@ -672,14 +679,14 @@ export const MILK_CHOOSER = {
 export const PACKING = {
   heading: "How is the milk packed and delivered?",
   answer:
-    "Every order is delivered in sealed pouches, every morning and evening, to Askari X, Askari XI, DHA and surrounding areas in Lahore.",
-  pendingNote: "Pouch sizes, for example 1 litre or 2 litres.",
+    "Every order is delivered in a sealed 1-litre or 2-litre pouch, every day between 1 and 7 pm, to Askari X, Askari XI and DHA in Lahore.",
+  pendingNote: null as string | null,
 } as const;
 
 export const STORAGE = {
   heading: "How should I store fresh milk?",
   answer:
-    "Boil fresh milk as soon as it arrives, let it cool, and keep it in the refrigerator. Fresh milk keeps for a shorter time than packaged milk because we do not heat-treat it.",
+    "Boil fresh milk as soon as it arrives, let it cool, and keep it in the refrigerator, where it keeps for 2 to 3 days. Fresh milk keeps for a shorter time than packaged milk because we do not heat-treat it.",
   steps: [
     { title: "Boil", body: "Bring it to a full boil as soon as it arrives." },
     { title: "Cool", body: "Let it cool before it goes in the fridge." },
@@ -698,9 +705,9 @@ export const PRODUCTS_PAGE_CTA = {
 /* ------------------------------------------------------------------ */
 
 export const QUALITY_META = {
-  title: "Pure Milk Without Water in Lahore | Al-Shukar Quality",
+  title: "Pure Milk Without Water in Lahore | Al Shukr Quality",
   description:
-    "No water, no preservatives, no chemicals. See how Al-Shukar milk is machine milked, chilled at once and checked in-house in Lahore.",
+    "No water, no preservatives, no chemicals. See how Al Shukr milk is machine milked, chilled at once and checked in-house in Lahore.",
 } as const;
 
 /** TODO: swap for shoot-list photo #5 (al-shukar-machine-milking.webp) or #6 (chilling tank). */
@@ -718,10 +725,10 @@ export const QUALITY_HERO = {
 } as const;
 
 export const QUALITY_PURE = {
-  heading: "Is Al-Shukar milk pure?",
+  heading: "Is Al Shukr milk pure?",
   verdict: "Yes.",
   answer:
-    "Al-Shukar milk has no water or adulteration added, and no preservatives or chemicals. It comes from our own herd, is machine milked, is chilled immediately after milking, and goes through regular in-house quality checks before delivery.",
+    "Al Shukr milk has no water or adulteration added, and no preservatives or chemicals. It comes from our own herd, is machine milked, is chilled immediately after milking, and goes through regular in-house quality checks before delivery.",
 } as const;
 
 /** confirmed: false rows are hidden in production until the client signs off. */
@@ -748,16 +755,20 @@ export const QUALITY_CHECKS = {
   heading: "What are in-house quality checks?",
   answer:
     "In-house quality checks are tests our own team runs on the farm, not by an outside laboratory.",
-  checks: null as { name: string; frequency: string }[] | null,
-  pendingNote:
-    "Exactly which checks the team runs and how often, for example smell, taste, temperature or a basic density test.",
+  checks: [
+    { name: "Smell", frequency: "Every day" },
+    { name: "Taste", frequency: "Every day" },
+    { name: "Temperature", frequency: "Every day" },
+    { name: "Density", frequency: "Every day" },
+  ] as { name: string; frequency: string }[] | null,
+  pendingNote: null as string | null,
 } as const;
 
 /** Add documents here once obtained, then update the schema and Google Business Profile. */
 export const CERTIFICATES = {
   heading: "Do you have lab reports or certificates?",
   answer:
-    "Not yet. Al-Shukar Dairy Farms does not currently hold an outside laboratory report or food-authority certificate, and we will not claim one before we have it. When we receive them, we will publish them on this page.",
+    "Not yet. Al Shukr Dairy does not currently hold an outside laboratory report or food-authority certificate, and we will not claim one before we have it. When we receive them, we will publish them on this page.",
   documents: [] as { title: string; issuedOn: string; pdfUrl: string }[],
 } as const;
 
@@ -770,9 +781,9 @@ export const CHILLING = {
 } as const;
 
 export const QUALITY_COMPARISON = {
-  heading: "How does Al-Shukar compare with loose and packaged milk?",
+  heading: "How does Al Shukr compare with loose and packaged milk?",
   answer:
-    "Al-Shukar milk is traceable to one farm, chilled at once and unprocessed, while loose milk is hard for a buyer to verify and packaged milk is heat-treated and older. Each type suits different needs.",
+    "Al Shukr milk is traceable to one farm, chilled at once and unprocessed, while loose milk is hard for a buyer to verify and packaged milk is heat-treated and older. Each type suits different needs.",
 } as const;
 
 export const SHELF_LIFE = {
@@ -792,9 +803,9 @@ export const QUALITY_CTA = {
 /* ------------------------------------------------------------------ */
 
 export const AREAS_META = {
-  title: "Milk Delivery in DHA & Askari, Lahore | Al-Shukar",
+  title: "Milk Delivery in DHA & Askari, Lahore | Al Shukr",
   description:
-    "Fresh milk delivered morning and evening to Askari X, Askari XI, DHA and nearby areas in Lahore. Check your area and get a free sample.",
+    "Fresh milk delivered daily, 1 to 7 pm, to Askari X, Askari XI and all of DHA, Lahore. Check your area and get a free sample.",
 } as const;
 
 /** TODO: swap for shoot-list photo #12 (al-shukar-rider-loading.webp) once it exists. */
@@ -807,24 +818,25 @@ export const AREAS_MEDIA = {
 export const AREAS_HERO = {
   headline: "Fresh Milk Delivery in DHA and Askari, Lahore",
   subtext:
-    "Morning and evening delivery in sealed pouches, straight from our own herd.",
+    "Daily delivery between 1 and 7 pm, in sealed pouches, straight from our own herd.",
   chips: ["Askari X (Askari 10)", "Askari XI (Askari 11)", "DHA Lahore"],
 } as const;
 
 export const AREAS_WHERE = {
-  heading: "Where does Al-Shukar deliver milk in Lahore?",
+  heading: "Where does Al Shukr deliver milk in Lahore?",
   answer:
-    "Al-Shukar Dairy Farms delivers fresh milk to Askari X, Askari XI, DHA and surrounding areas in Lahore. We deliver every morning and evening in sealed pouches. If you are close to these areas, send us your location and we will confirm on WhatsApp.",
+    "Al Shukr Dairy delivers fresh milk to Askari X, Askari XI, all of DHA in Lahore. We deliver every day between 1 and 7 pm in sealed pouches. If you are close to these areas, send us your location and we will confirm on WhatsApp.",
   mapCaption: "Illustration, not to scale. We confirm your exact location on WhatsApp.",
 } as const;
 
-/** surroundingAreas: named nearby areas once the client lists them; dhaCoverage: exact phases or blocks. */
+/** surroundingAreas: named areas beyond the three main ones (empty = none); dhaCoverage: exact phases or blocks. */
 export const AREAS_TABLE = {
   heading: "Our delivery areas",
-  times: "Morning and evening",
-  surroundingAreas: null as string[] | null,
+  times: "Daily, 1 to 7 pm",
+  /** No areas beyond Askari X, Askari XI and DHA (client, 29 Oct 2026). */
+  surroundingAreas: [] as string[] | null,
   surroundingPending: "Each surrounding area by name, with its delivery times.",
-  dhaCoverage: null as string | null,
+  dhaCoverage: "all of DHA Lahore" as string | null,
   dhaPending: 'The exact DHA phases or blocks covered. Never "all of DHA" unless that is true.',
 } as const;
 
@@ -845,28 +857,25 @@ export const AREA_CHECK = {
   secondary: "Ask on WhatsApp",
 } as const;
 
-/** windows: exact time windows the riders can keep, e.g. "6:00 to 8:00 am". */
 export const DELIVERY_TIMES = {
   heading: "What are the delivery timings?",
-  answer: "We deliver twice a day, in the morning and in the evening.",
-  windows: { morning: null as string | null, evening: null as string | null },
-  pendingNote: "Exact time windows, only ones the riders can keep.",
+  answer: "We deliver once a day, every day, between 1:00 pm and 7:00 pm.",
+  window: "1:00 pm to 7:00 pm",
+  charge: "Rs 100 per delivery, free on orders above 5 litres",
 } as const;
 
 export const AREA_NOT_LISTED = {
   heading: "What if my area is not on the list?",
   answer:
-    "Tell us where you live and we will note it. We only promise delivery to areas we can serve fresh, so we do not list places we do not yet cover.",
-  cta: "Tell us your area on WhatsApp",
+    "Join our waiting list. We only promise delivery to areas we can serve fresh, so we do not list places we do not yet cover, but we are expanding and will message you on WhatsApp when we reach your area.",
+  cta: "Join the waiting list on WhatsApp",
   whatsappMessage:
-    "Salam! I would like fresh milk delivery from Al-Shukar Dairy Farms. My area is: ",
-  /** Waiting-list line only if the client confirms expansion plans. */
-  pendingNote: "A waiting-list line, only if expansion plans are confirmed.",
+    "Salam! Please add me to the Al Shukr Dairy waiting list. My area is: ",
 } as const;
 
 export const AREAS_CTA = {
   headline: "Live in Askari or DHA? Your first litre is free.",
-  text: "Request your free 1-litre sample of Al-Shukar milk, delivered fresh to your door every morning and evening.",
+  text: "Request your free 1-litre sample of Al Shukr milk, delivered fresh to your door every day between 1 and 7 pm.",
 } as const;
 
 /* ------------------------------------------------------------------ */
@@ -874,9 +883,9 @@ export const AREAS_CTA = {
 /* ------------------------------------------------------------------ */
 
 export const FREE_SAMPLE_META = {
-  title: "Free Milk Sample in Lahore | Try 1 Litre Free | Al-Shukar",
+  title: "Free Milk Sample in Lahore | Try 1 Litre Free | Al Shukr",
   description:
-    "Request a free 1-litre sample of fresh Al-Shukar milk. One per household in Askari X, Askari XI and DHA, Lahore. Verified on WhatsApp.",
+    "Request a free 1-litre sample of fresh Al Shukr milk. One per household in Askari X, Askari XI and DHA, Lahore. Verified on WhatsApp.",
 } as const;
 
 /** TODO: swap for shoot-list photo #13 (al-shukar-doorstep-delivery.webp) once it exists. */
@@ -904,10 +913,10 @@ export const FREE_SAMPLE_HOW = {
 export const SAMPLE_RULES = [
   { label: "Size", value: "1 litre, in a sealed pouch." },
   { label: "Limit", value: "One sample per household." },
-  { label: "Where", value: "Askari X, Askari XI, DHA and surrounding areas in Lahore only." },
-  { label: "Cost", value: "Free. There is no payment and no commitment to subscribe." },
+  { label: "Where", value: "Askari X, Askari XI and DHA in Lahore only." },
+  { label: "Cost", value: "Free, including delivery. There is no payment and no commitment to subscribe." },
   { label: "Verification", value: "We confirm every request on WhatsApp before we deliver." },
-  { label: "Milk type", value: null, pendingNote: "Cow, buffalo or mixed, or whether the customer chooses." },
+  { label: "Milk type", value: "Your choice: cow, buffalo or mixed." },
 ] as { label: string; value: string | null; pendingNote?: string }[];
 
 export const SAMPLE_AFTER = {
@@ -915,9 +924,8 @@ export const SAMPLE_AFTER = {
   steps: [
     { title: "You send the form", body: "It takes about one minute." },
     { title: "We verify on WhatsApp", body: "We check your address is inside our delivery area." },
-    /** Add the delivery window (e.g. "the next morning") once confirmed. */
-    { title: "We deliver your litre", body: "Fresh, in a sealed pouch, to your door.", pendingNote: "Delivery window, for example the next morning." },
-    { title: "You decide", body: "If you like it, choose your milk and delivery time. If not, there is nothing to cancel." },
+    { title: "We deliver your litre", body: "Fresh, in a sealed pouch, to your door the next day." },
+    { title: "You decide", body: "If you like it, choose your milk and plan. If not, there is nothing to cancel." },
   ] as { title: string; body: string; pendingNote?: string }[],
 } as const;
 
@@ -953,8 +961,8 @@ export const FREE_SAMPLE_CTA = {
 /* ------------------------------------------------------------------ */
 
 export const TRACK_META = {
-  title: "Track Your Free Milk Sample | Al-Shukar Dairy Farms",
-  description: "Check the status of your free Al-Shukar milk sample with the mobile number you used on the form.",
+  title: "Track Your Free Milk Sample | Al Shukr Dairy",
+  description: "Check the status of your free Al Shukr milk sample with the mobile number you used on the form.",
 } as const;
 
 export const TRACK = {
@@ -988,10 +996,10 @@ export const TRACK_STATUSES = {
     message: "Your sample was delivered. We hope you enjoyed it.",
     cta: {
       label: "Choose your milk and start delivery",
-      whatsappMessage: "Salam! I enjoyed my Al-Shukar sample and would like to start daily delivery.",
+      whatsappMessage: "Salam! I enjoyed my Al Shukr sample and would like to start daily delivery.",
     },
   },
-  converted: { step: 3, message: "Welcome to Al-Shukar. Your daily delivery is set up." },
+  converted: { step: 3, message: "Welcome to Al Shukr. Your daily delivery is set up." },
   rejected: {
     step: null,
     message:
@@ -1031,13 +1039,13 @@ export type TrackStatus =
 /* ------------------------------------------------------------------ */
 
 export const FAQ_META = {
-  title: "FAQ: Fresh Milk Delivery in Lahore | Al-Shukar Dairy Farms",
+  title: "FAQ: Fresh Milk Delivery in Lahore | Al Shukr Dairy",
   description:
-    "Answers about Al-Shukar fresh milk: prices, delivery areas, free samples, quality, boiling and storage. Cow, buffalo and mixed milk in Lahore.",
+    "Answers about Al Shukr fresh milk: prices, delivery areas, free samples, quality, boiling and storage. Cow, buffalo and mixed milk in Lahore.",
 } as const;
 
 export const FAQ_PAGE = {
-  heading: "Frequently Asked Questions About Al-Shukar Milk",
+  heading: "Frequently Asked Questions About Al Shukr Milk",
   intro:
     "Short, plain answers about our farm, our milk, prices, delivery, the free sample and storing fresh milk at home.",
   searchLabel: "Search questions",
@@ -1054,8 +1062,7 @@ export type FaqItem = {
   link?: { label: string; href: string };
 };
 
-const mixedPrice = PRODUCTS.find((p) => p.id === "mixed")?.price;
-const unpricedMilks = PRODUCTS.filter((p) => !p.price).map((p) => p.label.toLowerCase());
+const priceOf = (id: (typeof PRODUCTS)[number]["id"]) => PRODUCTS.find((p) => p.id === id)?.price;
 
 /**
  * FAQ text from the SEO doc, word for word except where a bracketed
@@ -1065,11 +1072,11 @@ const unpricedMilks = PRODUCTS.filter((p) => !p.price).map((p) => p.label.toLowe
 export const FAQ_CATEGORIES: { id: string; title: string; items: FaqItem[] }[] = [
   {
     id: "about",
-    title: "About Al-Shukar Dairy Farms",
+    title: "About Al Shukr Dairy",
     items: [
       {
-        q: "What is Al-Shukar Dairy Farms?",
-        a: "Al-Shukar Dairy Farms is a family-owned dairy farm in Lahore, owned by the Alvi Family and founded in 2023. We deliver fresh cow, buffalo and mixed milk from our own tagged herd to homes in Askari X, Askari XI, DHA and surrounding areas.",
+        q: "What is Al Shukr Dairy?",
+        a: "Al Shukr Dairy is a family-owned dairy farm in Lahore, owned by the Alvi Family and founded in 2023. We deliver fresh cow, buffalo and mixed milk from our own tagged herd to homes in Askari X, Askari XI and DHA.",
         link: { label: "Meet the farm", href: "/our-farm" },
       },
       {
@@ -1077,8 +1084,8 @@ export const FAQ_CATEGORIES: { id: string; title: string; items: FaqItem[] }[] =
         a: "Our farm is in Lahore. We do not publish the farm address, but farm visits are possible on request. Message us on WhatsApp to arrange a visit, and we will share the location when the visit is confirmed.",
       },
       {
-        q: "Who owns Al-Shukar Dairy Farms?",
-        a: "Al-Shukar Dairy Farms is owned and run by the Alvi Family. We have kept our own herd and delivered fresh milk to Lahore households since 2023.",
+        q: "Who owns Al Shukr Dairy?",
+        a: "Al Shukr Dairy is owned and run by the Alvi Family. We have kept our own herd and delivered fresh milk to Lahore households since 2023.",
       },
     ],
   },
@@ -1087,18 +1094,17 @@ export const FAQ_CATEGORIES: { id: string; title: string; items: FaqItem[] }[] =
     title: "Quality and purity",
     items: [
       {
-        q: "Is Al-Shukar milk khalis (pure)?",
-        a: "Yes. Al-Shukar milk has no water or adulteration added. It comes from our own herd, is machine milked and is chilled immediately after milking. Khalis doodh is our promise, and our Quality page shows exactly how we keep it.",
+        q: "Is Al Shukr milk khalis (pure)?",
+        a: "Yes. Al Shukr milk has no water or adulteration added. It comes from our own herd, is machine milked and is chilled immediately after milking. Khalis doodh is our promise, and our Quality page shows exactly how we keep it.",
         link: { label: "How we keep milk pure", href: "/quality" },
       },
       {
         q: "Do you add water, preservatives or chemicals to your milk?",
-        a: "No. We add no water, no preservatives and no chemicals to Al-Shukar milk. Because nothing is added to extend its life, our milk is fresh and must be boiled and refrigerated at home.",
+        a: "No. We add no water, no preservatives and no chemicals to Al Shukr milk. Because nothing is added to extend its life, our milk is fresh and must be boiled and refrigerated at home.",
       },
       {
         q: "Is your milk tested?",
-        a: "Yes. Our team runs regular in-house quality checks on the farm. These are our own checks, not an outside laboratory test.",
-        pendingNote: "Name the checks once the client confirms them.",
+        a: "Yes. Our team checks the milk's smell, taste, temperature and density every day on the farm. These are our own checks, not an outside laboratory test.",
       },
       {
         q: "Do you have lab reports or a food authority certificate?",
@@ -1106,7 +1112,7 @@ export const FAQ_CATEGORIES: { id: string; title: string; items: FaqItem[] }[] =
       },
       {
         q: "How is your milk different from loose milk and packaged milk?",
-        a: "Al-Shukar milk is fresh, unprocessed and traceable to one farm. Loose milk from open cans is hard for a buyer to verify, and packaged milk is heat-treated and can be days or weeks old. See our comparison table on the Quality page.",
+        a: "Al Shukr milk is fresh, unprocessed and traceable to one farm. Loose milk from open cans is hard for a buyer to verify, and packaged milk is heat-treated and can be days or weeks old. See our comparison table on the Quality page.",
         link: { label: "See the comparison table", href: "/quality#compare" },
       },
     ],
@@ -1135,37 +1141,24 @@ export const FAQ_CATEGORIES: { id: string; title: string; items: FaqItem[] }[] =
     title: "Price and ordering",
     items: [
       {
-        q: "How much does Al-Shukar milk cost per litre?",
-        a: [
-          `Mixed (cow and buffalo) milk costs Rs ${mixedPrice} per litre.`,
-          unpricedMilks.length
-            ? `Message us on WhatsApp for today's ${unpricedMilks.join(" and ")} milk rates.`
-            : null,
-          "We show the date prices were last updated on our Products & Prices page.",
-        ]
-          .filter(Boolean)
-          .join(" "),
-        pendingNote: unpricedMilks.length ? "Cow and buffalo prices per litre." : undefined,
+        q: "How much does Al Shukr milk cost per litre?",
+        a: `Cow milk costs Rs ${priceOf("cow")}, buffalo milk Rs ${priceOf("buffalo")} and mixed (cow and buffalo) milk Rs ${priceOf("mixed")} per litre. Delivery is Rs 100, and free on orders above 5 litres. We show the date prices were last updated on our Products & Prices page.`,
         link: { label: "See full prices", href: "/products-prices" },
       },
       {
         // Only the doc's own Roman Urdu sentences; new Urdu needs a native editor.
         q: "Doodh ka rate kya hai?",
-        a: `Mixed doodh ka rate Rs ${mixedPrice} per litre hai. Taaza rate Products & Prices page par dekhein.`,
-        pendingNote: unpricedMilks.length
-          ? "Gaye aur bhains ke doodh ka rate, once confirmed (Roman Urdu reviewed by a native editor)."
-          : undefined,
+        a: `Gaye ka doodh Rs ${priceOf("cow")}, bhains ka doodh Rs ${priceOf("buffalo")} aur mila hua doodh Rs ${priceOf("mixed")} per litre hai. Taaza rate Products & Prices page par dekhein.`,
+        pendingNote: "New Roman Urdu wording: needs a native speaker's check before launch.",
         link: { label: "Products & Prices", href: "/products-prices" },
       },
       {
         q: "How do I pay?",
-        a: null,
-        pendingNote: "Payment methods, for example cash on delivery, bank transfer or monthly billing.",
+        a: "You can pay by Easypaisa, JazzCash, bank transfer or cash on delivery.",
       },
       {
         q: "Is there a minimum order or a subscription?",
-        a: null,
-        pendingNote: "Minimum quantity, and whether daily, alternate-day or weekly plans exist.",
+        a: "The minimum order is 1 litre. You can choose daily, alternate-day or weekly delivery. Delivery costs Rs 100 and is free on orders above 5 litres.",
       },
     ],
   },
@@ -1175,23 +1168,20 @@ export const FAQ_CATEGORIES: { id: string; title: string; items: FaqItem[] }[] =
     items: [
       {
         q: "Where do you deliver milk in Lahore?",
-        a: "We deliver to Askari X, Askari XI, DHA and surrounding areas in Lahore. If you live nearby, send us your location and we will confirm on WhatsApp whether we can deliver to you.",
+        a: "We deliver to Askari X, Askari XI and all of DHA in Lahore. If you live nearby, send us your location and we will confirm on WhatsApp whether we can deliver to you.",
         link: { label: "Delivery areas", href: "/delivery-areas" },
       },
       {
         q: "What time do you deliver?",
-        a: "We deliver every morning and evening. You can choose the delivery time that suits your household when you subscribe.",
-        pendingNote: "Exact time windows.",
+        a: "We deliver every day between 1:00 pm and 7:00 pm.",
       },
       {
         q: "How is the milk packed?",
-        a: "Every delivery comes in a sealed pouch.",
-        pendingNote: "Pouch sizes.",
+        a: "Every delivery comes in a sealed pouch of 1 litre or 2 litres.",
       },
       {
         q: "Can I pause delivery when I travel?",
-        a: null,
-        pendingNote: "How customers pause delivery and how much notice is needed.",
+        a: "Yes. Send us a simple text on WhatsApp at least one day before, and we will pause your delivery until you are back.",
       },
     ],
   },
@@ -1221,13 +1211,12 @@ export const FAQ_CATEGORIES: { id: string; title: string; items: FaqItem[] }[] =
     title: "Storage and safety",
     items: [
       {
-        q: "Do I need to boil Al-Shukar milk?",
+        q: "Do I need to boil Al Shukr milk?",
         a: "Yes. Our milk is fresh and not heat-treated, so you should boil it when it arrives, let it cool and keep it in the refrigerator. This is normal for fresh milk and part of keeping it safe.",
       },
       {
         q: "How long does fresh milk last?",
-        a: "Fresh milk keeps for a shorter time than packaged milk. After boiling and cooling, keep it refrigerated. Smell and check the milk before use.",
-        pendingNote: "How many days the client recommends, so the answer includes a real number.",
+        a: "After boiling and cooling, fresh milk keeps for 2 to 3 days in the refrigerator. That is shorter than packaged milk, so smell and check the milk before use.",
       },
       {
         q: "Why does fresh milk spoil faster than packaged milk?",
@@ -1261,16 +1250,16 @@ export const FAQ_CTA = {
 /* ------------------------------------------------------------------ */
 
 export const BLOG_META = {
-  title: "Fresh Milk Guides & Tips | Al-Shukar Dairy Farms Blog",
+  title: "Fresh Milk Guides & Tips | Al Shukr Dairy Blog",
   description:
     "Simple guides on fresh milk in Lahore: spotting adulterated milk, cow vs buffalo milk, boiling and storing milk, and more.",
 } as const;
 
 export const BLOG_PAGE = {
-  heading: "Fresh Milk Guides from Al-Shukar",
+  heading: "Fresh Milk Guides from Al Shukr",
   intro:
     "Simple, honest guides on fresh milk in Lahore: how to spot adulterated milk, how cow and buffalo milk differ, and how to boil and store milk at home.",
-  author: "Written by the Al-Shukar Dairy Farms team",
+  author: "Written by the Al Shukr Dairy team",
   readLabel: "Read the guide",
   /** Shown in production while no post is published yet. */
   empty: {
@@ -1341,7 +1330,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: "how-to-boil-and-store-fresh-milk",
     title: "How to Boil and Store Fresh Milk at Home",
-    metaTitle: "How to Boil & Store Fresh Milk at Home | Al-Shukar",
+    metaTitle: "How to Boil & Store Fresh Milk at Home | Al Shukr",
     metaDescription:
       "Fresh milk has no preservatives, so it needs boiling and refrigeration. Follow these simple steps to store your milk safely.",
     keyword: "how to boil and store fresh milk",
@@ -1351,14 +1340,14 @@ export const BLOG_POSTS: BlogPost[] = [
     status: "draft",
     publishedOn: null,
     reviewedOn: null,
-    pendingNote: `A safe number of days in the fridge from the client. Do not publish this article without it. ${REVIEW}`,
+    pendingNote: `Uses the client's figure of 2 to 3 days in the fridge (29 Oct 2026). ${REVIEW}`,
   },
   {
     slug: "why-chilling-matters-for-fresh-milk",
     title: "Why Chilling Matters for Fresh Milk",
-    metaTitle: "Why Chilling Matters for Fresh Milk | Al-Shukar",
+    metaTitle: "Why Chilling Matters for Fresh Milk | Al Shukr",
     metaDescription:
-      "Why fresh milk must be cooled right after milking, what happens in Lahore's heat when it is not, and how Al-Shukar chills its milk.",
+      "Why fresh milk must be cooled right after milking, what happens in Lahore's heat when it is not, and how Al Shukr chills its milk.",
     keyword: "why chilling milk is important",
     category: "Quality",
     answer:
@@ -1407,7 +1396,7 @@ export const PUBLISHED_POSTS = BLOG_POSTS.filter((p) => p.status === "published"
 /* ------------------------------------------------------------------ */
 
 export const BULK_META = {
-  title: "Bulk Milk Supply in Lahore | Al-Shukar Dairy Farms",
+  title: "Bulk Milk Supply in Lahore | Al Shukr Dairy",
   description:
     "Fresh cow, buffalo and mixed milk in bulk for shops, restaurants and distributors in Lahore. Send an inquiry and we will reply with availability.",
 } as const;
@@ -1431,7 +1420,7 @@ export const BULK_HERO = {
 export const BULK_WHO = {
   heading: "Who do we supply in bulk?",
   answer:
-    "Al-Shukar Dairy Farms is a bulk milk supplier in Lahore for shops, restaurants and distributors, with fresh cow, buffalo and mixed milk. Because we supply households first and our herd is limited, we confirm availability for each inquiry before we agree to a quantity.",
+    "Al Shukr Dairy is a bulk milk supplier in Lahore for shops, restaurants and distributors, with fresh cow, buffalo and mixed milk. Because we supply households first and our herd is limited, we confirm availability for each inquiry before we agree to a quantity.",
   types: [
     { id: "shop", title: "Shops", body: "Daily fresh milk for your counter." },
     { id: "restaurant", title: "Restaurants and cafes", body: "For tea, desserts, dahi and your kitchen." },
@@ -1440,13 +1429,13 @@ export const BULK_WHO = {
 } as const;
 
 export const BULK_WHY = {
-  heading: "Why choose Al-Shukar as your bulk milk supplier in Lahore?",
+  heading: "Why choose Al Shukr as your bulk milk supplier in Lahore?",
   points: [
     { title: "One known source.", body: "Milk from our own tagged herd, not mixed from many suppliers." },
     { title: "No water or adulteration.", body: "No preservatives or chemicals." },
     { title: "Chilled right after milking.", body: "Machine milked and cooled immediately." },
     { title: "Three milk types.", body: "Cow, buffalo and mixed." },
-    { title: "Regular in-house quality checks.", body: null },
+    { title: "Regular in-house quality checks.", body: "Smell, taste, temperature and density, every day." },
   ] as { title: string; body: string | null }[],
 } as const;
 
@@ -1496,7 +1485,7 @@ export const BULK_FORM = {
   visualCaption: "Illustration only. We confirm availability for every inquiry.",
   direct: "Prefer to talk? Message or call us on WhatsApp",
   whatsappMessage:
-    "Salam! I would like to ask about bulk milk supply from Al-Shukar Dairy Farms for my business.",
+    "Salam! I would like to ask about bulk milk supply from Al Shukr Dairy for my business.",
 } as const;
 
 export const BULK_CTA = {
@@ -1516,23 +1505,22 @@ export const BULK_CTA = {
  * ContactPoint schema out. Business hours and social links stay hidden.
  */
 export const CONTACT_STATUS = {
-  channelsConfirmed: false,
-  socialConfirmed: false,
-  /** Real business hours, e.g. "Every day, 6:00 am to 9:00 pm". */
-  businessHours: null as string | null,
+  channelsConfirmed: true,
+  socialConfirmed: true,
+  businessHours: "Every day, 6:00 am to 9:00 pm" as string | null,
 };
 
 export const CONTACT_META = {
-  title: "Contact Al-Shukar Dairy Farms | WhatsApp & Phone, Lahore",
+  title: "Contact Al Shukr Dairy | WhatsApp & Phone, Lahore",
   description:
-    "Message or call Al-Shukar Dairy Farms in Lahore about fresh milk delivery, free samples, farm visits and bulk orders. WhatsApp is the fastest way.",
+    "Message or call Al Shukr Dairy in Lahore about fresh milk delivery, free samples, farm visits and bulk orders. WhatsApp is the fastest way.",
 } as const;
 
 export const CONTACT_PAGE = {
-  heading: "Contact Al-Shukar Dairy Farms",
+  heading: "Contact Al Shukr Dairy",
   subtext:
     "The fastest way to reach us is WhatsApp. We reply to sample requests, delivery questions and farm-visit requests there.",
-  howHeading: "How can I contact Al-Shukar Dairy Farms?",
+  howHeading: "How can I contact Al Shukr Dairy?",
   detailsHeading: "Contact details",
   noAddress: "There is no public street address. We share the farm location when a visit is confirmed.",
   topicsHeading: "What should I message about?",
@@ -1542,8 +1530,10 @@ export const CONTACT_PAGE = {
 /** Built from the same constants as the footer, so the details always match. */
 export function contactAnswer() {
   return [
-    `You can contact Al-Shukar Dairy Farms on WhatsApp at ${WHATSAPP_DISPLAY}, by phone at ${CONTACT.phone} or by email at ${CONTACT.email}.`,
-    "We are a Lahore dairy farm delivering fresh milk to Askari X, Askari XI, DHA and surrounding areas.",
+    CONTACT.email
+      ? `You can contact Al Shukr Dairy on WhatsApp at ${WHATSAPP_DISPLAY}, by phone at ${CONTACT.phone} or by email at ${CONTACT.email}.`
+      : `You can contact Al Shukr Dairy on WhatsApp or by phone at ${CONTACT.phone}.`,
+    "We are a Lahore dairy farm delivering fresh milk to Askari X, Askari XI and DHA.",
     CONTACT_STATUS.businessHours ? `Our hours are ${CONTACT_STATUS.businessHours}.` : null,
   ]
     .filter(Boolean)
@@ -1580,7 +1570,7 @@ export const CONTACT_TOPICS = [
     id: "visit",
     label: "Farm visit",
     body: "Ask for a time. We share the location once your visit is confirmed.",
-    message: "Salam! I would like to visit the Al-Shukar farm. When can I come?",
+    message: "Salam! I would like to visit the Al Shukr farm. When can I come?",
     link: null,
   },
   {
@@ -1605,4 +1595,158 @@ export const CONTACT_FORM = {
     phone: "Enter a Pakistani mobile number, for example 0300 1234567.",
     message: "Please write a short message.",
   },
+} as const;
+
+/* ------------------------------------------------------------------ */
+/* Privacy Policy (/privacy)                                            */
+/* ------------------------------------------------------------------ */
+
+export const PRIVACY_META = {
+  title: "Privacy Policy | Al Shukr Dairy",
+  description:
+    "How Al Shukr Dairy collects, uses and protects the details you share for free samples, milk delivery and inquiries in Lahore.",
+} as const;
+
+/**
+ * Plain-language policy written from what the site and business really do:
+ * no cookies, analytics or ad tracking; forms collect only delivery details.
+ * Pakistan has no data protection act in force yet (Oct 2026), so the policy
+ * makes its own commitments and references PECA 2016 without claiming more.
+ * Revisit if the Personal Data Protection Bill becomes law, or if analytics,
+ * cookies or a new service provider are added to the site.
+ */
+export const PRIVACY = {
+  heading: "Privacy Policy",
+  updated: "31 October 2026",
+  intro:
+    "This policy explains what personal details Al Shukr Dairy collects, why we need them, who sees them and how you can ask us to change or delete them. We have written it in plain language, because you should be able to understand it in a few minutes.",
+  pendingNote:
+    "Draft for the client's approval (checklist item 39). Also confirm the website host and form database once chosen, and the 12-month retention periods.",
+  summary: [
+    "We collect only what we need to deliver milk and reply to you.",
+    "We never sell or rent your details.",
+    "This website uses no cookies, analytics or advertising trackers.",
+    "You can ask us to correct or delete your details at any time on WhatsApp.",
+  ],
+  sections: [
+    {
+      id: "who-we-are",
+      title: "Who we are",
+      paragraphs: [
+        `Al Shukr Dairy is a family-owned dairy farm in Lahore, Pakistan, owned and run by ${SITE.owner}. We deliver fresh milk to homes in Askari X, Askari XI and DHA. In this policy, "we", "us" and "our" mean Al Shukr Dairy.`,
+        `If you have any question about your details, message us on WhatsApp or call ${CONTACT.phone}.`,
+      ],
+    },
+    {
+      id: "what-we-collect",
+      title: "What we collect",
+      paragraphs: ["We only collect details you choose to give us:"],
+      list: [
+        "Free sample form: your name, mobile number, delivery address, the milk you want to try and, only if you tap “Use my current location”, your home's location.",
+        "Bulk inquiry form: your business name, your name, mobile number, business type, milk type, litres needed per day, delivery area and any message you add.",
+        "Contact form: your name, mobile number and message.",
+        "Sample tracking: the mobile number you enter, used only to look up your request.",
+        "When you order or message us: your delivery details, plan, order history, payment records and the messages you send us on WhatsApp or by phone.",
+      ],
+      after: [
+        "We do not ask for your CNIC, card numbers or bank passwords. If you pay by Easypaisa, JazzCash or bank transfer, the payment is handled by that provider, and we only keep a record that you paid.",
+      ],
+    },
+    {
+      id: "location",
+      title: "Your location",
+      paragraphs: [
+        "Sharing your location on the sample form is optional. Your browser asks your permission first, and you can remove the location before you send the form. We use it only to confirm that your home is inside our delivery area and to help our rider find your door. We do not track your location at any other time.",
+      ],
+    },
+    {
+      id: "how-we-use",
+      title: "How we use your details",
+      list: [
+        "To verify your free sample request on WhatsApp and deliver it.",
+        "To check that you are inside our delivery area and keep samples to one per household.",
+        "To deliver your milk, manage your plan and keep payment records.",
+        "To reply to your questions and bulk inquiries.",
+        "To tell you about changes to your delivery, such as a delay or a price change.",
+        "To protect our service from fake or repeated requests.",
+      ],
+      after: [
+        "We only message you about your requests and orders. We do not send promotional messages unless you ask for them, and you can tell us to stop at any time.",
+      ],
+    },
+    {
+      id: "sharing",
+      title: "Who sees your details",
+      paragraphs: ["We never sell, rent or trade your details. We share them only when needed to serve you:"],
+      list: [
+        "Our team and delivery riders, who see the name, address, phone number and location needed for your delivery.",
+        "WhatsApp (Meta), when you message us or we confirm your request on WhatsApp. WhatsApp's own privacy policy applies to those chats.",
+        "Your payment provider (Easypaisa, JazzCash or your bank), when you choose to pay that way.",
+        "The companies that host this website and store our form submissions, only to run those services for us.",
+        "Government or law enforcement authorities, only when the law requires it.",
+      ],
+    },
+    {
+      id: "cookies",
+      title: "Cookies and tracking",
+      paragraphs: [
+        "This website does not use cookies, analytics tools or advertising trackers, and we do not build a profile of your visits. Like any website, our host may keep standard technical logs, such as your IP address and browser type, for a short time to keep the site secure and working.",
+        "Links to WhatsApp, Instagram and Facebook take you to those services, and their own privacy policies apply there.",
+      ],
+    },
+    {
+      id: "retention",
+      title: "How long we keep your details",
+      list: [
+        "Sample requests: up to 12 months, so we can keep samples to one per household.",
+        "Customer details: while you are our customer, and up to 12 months after your last delivery. Payment records may be kept longer where the law or our accounts require it.",
+        "Inquiries and messages: up to 12 months after our last reply.",
+      ],
+      after: ["After that, we delete your details or keep them only in a form that no longer identifies you."],
+    },
+    {
+      id: "security",
+      title: "How we protect your details",
+      paragraphs: [
+        "Only the people who need your details to serve you can see them, and we take reasonable steps to keep them safe. No website or phone is completely secure, so if we ever learn that your details were exposed, we will tell you as soon as we can.",
+      ],
+    },
+    {
+      id: "your-choices",
+      title: "Your choices",
+      paragraphs: ["You can message us on WhatsApp at any time to:"],
+      list: [
+        "Ask what details we hold about you.",
+        "Correct details that are wrong or out of date.",
+        "Ask us to delete your details.",
+        "Withdraw your consent or stop messages from us.",
+      ],
+      after: [
+        "We reply within 14 days. If you ask us to delete your details while you have an active delivery plan, we will need to stop your deliveries.",
+      ],
+    },
+    {
+      id: "children",
+      title: "Children",
+      paragraphs: [
+        "Our service is meant for adults managing their household's milk. We do not knowingly collect details from anyone under 18. If you think a child has sent us their details, message us and we will delete them.",
+      ],
+    },
+    {
+      id: "law",
+      title: "The law we follow",
+      paragraphs: [
+        "We handle personal details in line with the laws of Pakistan, including the Prevention of Electronic Crimes Act, 2016. If a new data protection law comes into force, we will update this policy to meet it.",
+      ],
+    },
+    {
+      id: "changes",
+      title: "Changes to this policy",
+      paragraphs: [
+        "If we change how we handle your details, we will update this page and the date at the top. If a change is important, we will also tell our customers on WhatsApp.",
+      ],
+    },
+  ] as { id: string; title: string; paragraphs?: string[]; list?: string[]; after?: string[] }[],
+  contactHeading: "Questions about your details?",
+  contactText: "Message us on WhatsApp or call us. Someone from our family will reply.",
 } as const;

@@ -18,7 +18,7 @@ export function Comparison({
   answer?: string;
 }) {
   const rivals = COMPARISON.columns.slice(1);
-  /** Index into COMPARISON.columns of the milk shown against Al-Shukar on mobile. */
+  /** Index into COMPARISON.columns of the milk shown against Al Shukr on mobile. */
   const [rival, setRival] = useState(1);
 
   return (
@@ -31,11 +31,11 @@ export function Comparison({
         />
         <p className="mt-4 max-w-2xl text-soil-muted">{answer}</p>
 
-        {/* Mobile: Al-Shukar head-to-head with one rival at a time, so two columns fit without sideways scrolling */}
+        {/* Mobile: Al Shukr head-to-head with one rival at a time, so two columns fit without sideways scrolling */}
         <div className="mt-10 md:hidden">
           <div
             role="tablist"
-            aria-label="Compare Al-Shukar with"
+            aria-label="Compare Al Shukr with"
             className="grid grid-cols-2 gap-1 rounded-full bg-cream p-1"
           >
             {rivals.map((col, i) => {
@@ -89,7 +89,7 @@ export function Comparison({
         <div className="mt-10 hidden overflow-x-auto rounded-3xl border border-pasture/10 bg-cream/60 md:block">
           <table className="w-full min-w-[640px] border-collapse text-left text-sm md:text-base">
             <caption className="sr-only">
-              Al-Shukar milk compared with loose milk and packaged milk
+              Al Shukr milk compared with loose milk and packaged milk
             </caption>
             <thead>
               <tr className="bg-pasture text-milk">

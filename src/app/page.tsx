@@ -15,10 +15,12 @@ import { FinalCta } from "@/components/sections/FinalCta";
 import { Footer } from "@/components/sections/Footer";
 import { WhatsAppFloat } from "@/components/sections/WhatsAppFloat";
 import {
+  CONTACT,
   HOME_META,
   QUICK_ANSWERS,
   SERVICE_AREAS,
   SITE,
+  SOCIAL,
   TESTIMONIALS,
 } from "@/lib/constants";
 
@@ -32,7 +34,7 @@ export const metadata: Metadata = {
   },
 };
 
-/** Only confirmed facts — add telephone, sameAs and Offer prices once the client confirms them. */
+/** Only confirmed facts. Add email once the client has one. */
 const jsonLd = [
   {
     "@context": "https://schema.org",
@@ -43,7 +45,10 @@ const jsonLd = [
     description: SITE.description,
     url: `${SITE.url}/`,
     foundingDate: SITE.founded,
-    priceRange: "Rs 250 per litre (mixed milk)",
+    telephone: CONTACT.phone,
+    sameAs: SOCIAL.map((s) => s.href),
+    openingHours: "Mo-Su 06:00-21:00",
+    priceRange: "Rs 240 to Rs 260 per litre",
     address: {
       "@type": "PostalAddress",
       addressLocality: "Lahore",

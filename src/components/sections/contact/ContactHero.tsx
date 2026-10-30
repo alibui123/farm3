@@ -23,7 +23,9 @@ export function ContactHero() {
       note: "Fastest reply",
     },
     { label: "Phone", value: CONTACT.phone, href: `tel:${CONTACT.phone.replace(/\s/g, "")}`, external: false, Icon: Phone, tone: "bg-pasture text-milk", note: null },
-    { label: "Email", value: CONTACT.email, href: `mailto:${CONTACT.email}`, external: false, Icon: Mail, tone: "bg-amber text-soil", note: null },
+    ...(CONTACT.email
+      ? [{ label: "Email", value: CONTACT.email, href: `mailto:${CONTACT.email}`, external: false, Icon: Mail, tone: "bg-amber text-soil", note: null }]
+      : []),
   ];
 
   return (

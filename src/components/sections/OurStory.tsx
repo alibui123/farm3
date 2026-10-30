@@ -168,10 +168,10 @@ function Crate({ d, moving }: { d: number; moving: boolean }) {
         }}
       >
         <span className="rounded-full bg-amber px-2 py-0.5 text-[10px] font-semibold tracking-[0.12em] text-soil">
-          MORNING
+          DAILY
         </span>
         <span className="rounded-full bg-soil px-2 py-0.5 text-[10px] font-semibold tracking-[0.12em] text-milk">
-          EVENING
+          1 TO 7 PM
         </span>
       </div>
       <div className="absolute -top-8 left-1/2 -ml-5 h-12 w-10 overflow-hidden rounded-t-md border border-soil/15 bg-milk">

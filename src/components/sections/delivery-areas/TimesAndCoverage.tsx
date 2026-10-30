@@ -1,16 +1,14 @@
 "use client";
 
-import { MessageCircle, Moon, Sun } from "lucide-react";
+import { Clock, MessageCircle, Truck } from "lucide-react";
 import { AREA_NOT_LISTED, DELIVERY_TIMES, whatsappLink } from "@/lib/constants";
 import { SplitHeading } from "@/components/ui/SplitHeading";
 import { MilkWaveDivider } from "@/components/ui/MilkWave";
-import { Pending, PendingBadge } from "@/components/ui/Pending";
 
 export function TimesAndCoverage() {
-  const { windows } = DELIVERY_TIMES;
-  const rounds = [
-    { label: "Morning", window: windows.morning, Icon: Sun, tone: "bg-amber/20 text-soil", icon: "bg-amber text-soil" },
-    { label: "Evening", window: windows.evening, Icon: Moon, tone: "bg-soil text-milk", icon: "bg-milk/15 text-milk" },
+  const cards = [
+    { label: "Every day", detail: DELIVERY_TIMES.window, Icon: Clock, tone: "bg-amber/20 text-soil", icon: "bg-amber text-soil" },
+    { label: "Delivery charge", detail: DELIVERY_TIMES.charge, Icon: Truck, tone: "bg-soil text-milk", icon: "bg-milk/15 text-milk" },
   ];
 
   return (
@@ -25,23 +23,16 @@ export function TimesAndCoverage() {
           <p className="mt-4 text-soil-muted md:text-lg">{DELIVERY_TIMES.answer}</p>
 
           <ul className="mt-8 grid gap-3 sm:grid-cols-2">
-            {rounds.map(({ label, window, Icon, tone, icon }) => (
+            {cards.map(({ label, detail, Icon, tone, icon }) => (
               <li key={label} className={`rounded-3xl p-6 ${tone}`}>
                 <span className={`flex h-11 w-11 items-center justify-center rounded-full ${icon}`} aria-hidden>
                   <Icon size={20} />
                 </span>
                 <p className="mt-5 font-display text-2xl">{label}</p>
-                <p className="mt-1 text-sm opacity-85">
-                  {window ?? (
-                    <>
-                      Every {label.toLowerCase()} <PendingBadge className="ml-1" />
-                    </>
-                  )}
-                </p>
+                <p className="mt-1 text-sm opacity-85">{detail}</p>
               </li>
             ))}
           </ul>
-          {!windows.morning && <Pending className="mt-4">{DELIVERY_TIMES.pendingNote}</Pending>}
         </div>
 
         <div>
@@ -59,7 +50,6 @@ export function TimesAndCoverage() {
             <MessageCircle size={18} aria-hidden />
             {AREA_NOT_LISTED.cta}
           </a>
-          <Pending className="mt-6">{AREA_NOT_LISTED.pendingNote}</Pending>
         </div>
       </div>
     </section>
